@@ -4,6 +4,10 @@ import { HttpService, i18n, THttpServiceClient } from "../../modules";
 
 export type TKyClientOptions = Options;
 
+export type THTTPError = {
+  message: string;
+};
+
 export class KyClient implements THttpServiceClient<Options> {
   public options: Options;
   private kyInstance: ReturnType<(typeof ky)["create"]>;

@@ -1,15 +1,14 @@
 import { z } from "zod";
 
-import { Hooks, HTTPError } from "ky";
+import { Hooks } from "ky";
 
 import { apiURL, handleAsync, i18n, THttpServiceOptions } from "../../modules";
 
 import { TUserToken, userSchema, type TUser } from "../types";
 
 import { useStore } from "../store";
-import { httpService } from "./httpService";
+import { httpService, THTTPError } from "./httpService";
 
-// types
 export type TAuthLoginRequestPayload = z.infer<typeof authLoginRequestSchema>;
 
 export type TAuthLoginResponsePayload = {
@@ -45,17 +44,17 @@ class AuthApi {
 
   // methods
   async login(payload: TAuthLoginRequestPayload, options?: THttpServiceOptions) {
-    return await handleAsync<HTTPError, TAuthLoginResponsePayload>(() =>
+    return await handleAsync<THTTPError, TAuthLoginResponsePayload>(() =>
       httpService.post(this.loginEndpoint, payload, options)
     );
   }
 
   async logout(payload: TAuthLogoutRequestPayload, options?: THttpServiceOptions) {
-    return await handleAsync<HTTPError, void>(() => httpService.post(this.logoutEndpoint, payload, options));
+    return await handleAsync<THTTPError, void>(() => httpService.post(this.logoutEndpoint, payload, options));
   }
 
   async refreshAccessToken(payload: TAuthRefreshAccessTokenRequestPayload, options?: THttpServiceOptions) {
-    return await handleAsync<HTTPError, TUserToken>(() =>
+    return await handleAsync<THTTPError, TUserToken>(() =>
       httpService.post(this.refreshAccessTokenEndpoint, payload, options)
     );
   }

@@ -2,18 +2,16 @@ import { HttpResponse, http } from "msw";
 
 import { faker } from "@faker-js/faker";
 
-import { TAuthLoginRequestPayload, TAuthLoginResponsePayload, authApi } from "../../api";
+import { TAuthLoginRequestPayload, TAuthLoginResponsePayload, TAuthLogoutRequestPayload, authApi } from "../../api";
 
-// NOTE: keep it's evaluation separate.
-// const endpoints = {
-//   login: authApi.loginEndpoint,
-// };
+export type THTTPError = {
+  message: string;
+};
 
-export const login = http.post<never, TAuthLoginRequestPayload, TAuthLoginResponsePayload>(
+export const login = http.post<never, TAuthLoginRequestPayload, TAuthLoginResponsePayload | THTTPError>(
   authApi.loginEndpoint,
   async ({ request }) => {
     const { email } = await request.json();
-
     const response: TAuthLoginResponsePayload = {
       user: {
         id: faker.string.uuid(),
@@ -37,7 +35,13 @@ export const login = http.post<never, TAuthLoginRequestPayload, TAuthLoginRespon
   }
 );
 
-export const logout = http.post(authApi.logoutEndpoint, () => {
+export const logout = http.post<never, TAuthLogoutRequestPayload>(authApi.logoutEndpoint, async ({ request }) => {
+  const { refreshToken } = await request.json();
+
+  if (!refreshToken) {
+    return HttpResponse.json({ message: "Refresh token is required" }, { status: 400 });
+  }
+
   return HttpResponse.json({}, { status: 200 });
 });
 

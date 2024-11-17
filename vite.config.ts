@@ -71,6 +71,7 @@ export default defineConfig(({ mode }) => {
     },
     test: {
       root: "./src",
+      env: loadEnv("test", process.cwd() + "/env"),
       // use APIs globally like jest
       // READ-MORE: https://vitest.dev/config/#globals
       globals: false,
