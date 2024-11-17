@@ -45,11 +45,11 @@ export const useStoreBase = create<TStore>()(
           },
         })
       ),
-      { enabled: import.meta.env.DEV }
+      { enabled: import.meta.env.DEV && Boolean(import.meta.env.VITE_VITEST_ENV) === false }
     ),
     {
       name: STORE_NAME,
-      enabled: import.meta.env.DEV,
+      enabled: import.meta.env.DEV && Boolean(import.meta.env.VITE_VITEST_ENV) === false,
     }
   )
 );

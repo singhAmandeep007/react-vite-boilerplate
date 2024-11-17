@@ -21,12 +21,14 @@ const loggerImpl: TLoggerImpl =
   (set, get, store) => {
     const loggedSet: typeof set = (...args) => {
       set(...(args as Parameters<typeof set>));
-      console.log(
-        "%c[Zustand] Store",
-        "color: #f79009;font-weight: bold;",
-        ...(options?.name ? [`${options?.name}:`] : []),
-        get()
-      );
+      if (options.enabled) {
+        console.log(
+          "%c[Zustand] Store",
+          "color: #f79009;font-weight: bold;",
+          ...(options?.name ? [`${options?.name}:`] : []),
+          get()
+        );
+      }
     };
     const setState = store.setState;
 
