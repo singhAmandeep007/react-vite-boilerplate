@@ -39,7 +39,8 @@
     "commit:pre": "lint-staged",
     "commit:init": "git-cz",
     "commit:devmoji": "devmoji -e --lint",
-    "COMMIT-END": "--------------------------------------------------------------------------"
+    "COMMIT-END": "--------------------------------------------------------------------------",
+    "prepare": "husky || true"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -123,5 +124,10 @@
     "vite-plugin-inspect": "^0.8.7",
     "vite-plugin-svgr": "^4.3.0",
     "vitest": "^2.1.5"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

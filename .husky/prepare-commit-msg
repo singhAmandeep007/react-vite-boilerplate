@@ -2,6 +2,6 @@
 
 echo '🏗️ Running commitlint checks...'
 
-npm commit:devmoji
+npm run commit:devmoji
 
 echo '✨🚀🏄‍♂️🍻 No error found: finalising commit...'
