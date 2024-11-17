@@ -1,6 +1,7 @@
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { Fragment } from "react";
 
+import { useDocTitle } from "../components/hooks";
 import { TanStackRouterDevelopmentTools } from "../components/utils/developmentTools";
 
 import { QueryClient } from "@tanstack/react-query";
@@ -18,6 +19,8 @@ export const Route = createRootRouteWithContext<TRouterContext>()({
 });
 
 function RootComponent() {
+  useDocTitle();
+
   return (
     <Fragment>
       <Outlet />
