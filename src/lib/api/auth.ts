@@ -69,7 +69,9 @@ export const withAuthHooks: Hooks = {
       request.headers.set("Accept-Language", i18n.currentLanguage);
 
       // if request is an API request, add Authorization header
-      const isAPIRequest = request.url.startsWith(import.meta.env.VITE_API_URL);
+      const isAPIRequest = request.url.startsWith(
+        !window?.Cypress ? window.Cypress?.env("VITE_API_URL") : import.meta.env.VITE_API_URL
+      );
 
       // if request is an API request, add Authorization header and check for token expiration
       if (isAPIRequest) {

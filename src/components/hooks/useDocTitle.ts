@@ -13,7 +13,11 @@ type TitleConfig = {
 };
 
 function getAppTitle(location: { pathname: string }, config: TitleConfig = {}) {
-  const { defaultTitle = import.meta.env.VITE_APP_NAME, titleMap = {}, capitalize = true } = config;
+  const {
+    defaultTitle = window?.Cypress ? window?.Cypress?.env("VITE_APP_NAME") : import.meta.env.VITE_APP_NAME,
+    titleMap = {},
+    capitalize = true,
+  } = config;
 
   // remove leading and trailing slashes and split into segments
   const segments = location.pathname.split("/").filter(Boolean);

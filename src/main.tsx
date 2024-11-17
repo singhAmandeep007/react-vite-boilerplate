@@ -6,10 +6,16 @@ import { i18n } from "./modules/i18n/index.ts";
 
 import "./index.css";
 
+declare global {
+  interface Window {
+    Cypress?: { env: (key: string) => string };
+  }
+}
+
 async function setupApp() {
   await i18n.configure();
 
-  if (import.meta.env.DEV) {
+  if (!window?.Cypress && import.meta.env.DEV) {
     const mocker = await import("./lib/mocker");
 
     mocker.runServer();

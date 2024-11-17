@@ -15,6 +15,8 @@ export const store: StateCreator<TStore> = (...args) => ({
   ...createAuthStore(...args),
 });
 
+const isDebugMode = !window?.Cypress && import.meta.env.DEV && Boolean(import.meta.env.VITE_VITEST_ENV) === false;
+
 export const STORE_VERSION = 1;
 export const STORE_NAME = "tasksManagerStore";
 export const useStoreBase = create<TStore>()(
@@ -45,11 +47,11 @@ export const useStoreBase = create<TStore>()(
           },
         })
       ),
-      { enabled: import.meta.env.DEV && Boolean(import.meta.env.VITE_VITEST_ENV) === false }
+      { enabled: isDebugMode }
     ),
     {
       name: STORE_NAME,
-      enabled: import.meta.env.DEV && Boolean(import.meta.env.VITE_VITEST_ENV) === false,
+      enabled: isDebugMode,
     }
   )
 );

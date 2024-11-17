@@ -1,4 +1,4 @@
-import { HttpService } from "./httpService";
+import { HttpService } from "../../modules";
 
 import { KyClient } from "./kyClient";
 

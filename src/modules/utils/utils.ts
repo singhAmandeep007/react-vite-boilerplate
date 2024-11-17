@@ -1,5 +1,5 @@
-export const isProduction = import.meta.env.MODE === "production";
-export const isDevelopment = import.meta.env.MODE === "development";
+export const isProduction = !window?.Cypress && import.meta.env.MODE === "production";
+export const isDevelopment = !window?.Cypress && import.meta.env.MODE === "development";
 
 export function merge<T extends object, U extends object[]>(target: T, ...sources: U): T & U[number] {
   const isObject = (item: unknown): item is object => item !== null && typeof item === "object" && !Array.isArray(item);
