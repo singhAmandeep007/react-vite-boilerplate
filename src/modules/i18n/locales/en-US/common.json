@@ -1,0 +1,37 @@
+{
+  "lang": {
+    "en-US": "English",
+    "ja-JP": "Japanese",
+    "iconLabel": "Change language"
+  },
+  "theme": {
+    "iconLabel": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "app": {
+    "author": "Amandeep Singh",
+    "version": "1.0.0",
+    "description": "A simple app",
+    "appName": "App",
+    "copyright": "Copyright © {{year}}"
+  },
+  "login": "Login",
+  "logout": "Logout",
+  "signIn": "Sign In",
+
+  "welcome": "Welcome",
+  "yes": "Yes",
+  "no": "No",
+  "submit": "Submit",
+  "cancel": "Cancel",
+  "error": "Error",
+  "success": "Success",
+  "loading": "Loading",
+  "empty": "Empty",
+  "notFound": "Not Found",
+
+  "settings": "Settings",
+  "language": "Language"
+}

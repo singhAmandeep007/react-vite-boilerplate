@@ -1,0 +1,12 @@
+. "$(dirname "$0")/_/husky.sh"
+
+echo '🏗️ Running pre commit checks...'
+
+pnpm commit:pre || (
+		echo '❌ You have a problem in your code. Run ⚙️ npm commit:pre to check errors, make changes and try ⚙️ npm commit:init again.';
+		false;
+)
+
+echo '✨🚀🏄‍♂️🍻 No error found: running commitlint now...'
+
+

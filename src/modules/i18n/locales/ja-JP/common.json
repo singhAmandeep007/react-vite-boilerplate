@@ -1,0 +1,14 @@
+{
+  "theme": {
+    "iconLabel": "テーマの切り替え",
+    "light": "ライト",
+    "dark": "暗い",
+    "system": "システム"
+  },
+  "lang": {
+    "en-US": "英語",
+    "ja-JP": "日本語",
+    "iconLabel": "言語を変えてください"
+  },
+  "login": "ログイン"
+}

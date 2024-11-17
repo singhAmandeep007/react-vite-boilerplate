@@ -1,0 +1,15 @@
+{
+  "reloadApp": "Reload App",
+  "default": {
+    "caption": "Something went wrong!",
+    "content": "Please click reload to load the app again!"
+  },
+  "http": {
+    "status_401": "Unauthorized. Please login and try again.",
+    "status_403": "Forbidden. You do not have permission to access this resource.",
+    "status_404": "Resource not found.",
+    "status_429": "Too many requests. Please try again later.",
+    "status_500": "Internal server error.",
+    "unknown": "Internal error. HTTP Status code: #{{- status}}."
+  }
+}
