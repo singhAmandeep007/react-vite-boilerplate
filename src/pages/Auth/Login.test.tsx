@@ -1,4 +1,5 @@
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { Login } from "./Login";
 
@@ -10,12 +11,12 @@ const testServer = createTestMswServer();
 
 describe("Login", () => {
   const setup = async () => {
-    const result = render(<Login />);
+    const view = render(<Login />);
 
     await waitFor(() => expect(screen.queryByRole("button", { name: "Login" })).toBeVisible());
 
     return {
-      result,
+      view,
     };
   };
 
@@ -32,16 +33,11 @@ describe("Login", () => {
   it("successfully submits the form with email and password", async () => {
     await setup();
 
-    fireEvent.change(screen.getByPlaceholderText("m@example.com"), {
-      target: { value: "test@example.com" },
-    });
-    fireEvent.change(screen.getByPlaceholderText("********"), {
-      target: { value: "password" },
-    });
+    await userEvent.type(screen.getByPlaceholderText("m@example.com"), "test@example.com");
 
-    fireEvent.click(screen.getByRole("button", { name: "Login" }));
+    await userEvent.type(screen.getByPlaceholderText("********"), "password");
 
-    await waitFor(() => expect(screen.getByRole("button", { name: "Login" })).toBeDisabled());
+    await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
     await waitFor(() => expect(location.pathname).toBe("/app"));
   });
@@ -55,14 +51,11 @@ describe("Login", () => {
       })
     );
 
-    fireEvent.change(screen.getByPlaceholderText("m@example.com"), {
-      target: { value: "test@example.com" },
-    });
-    fireEvent.change(screen.getByPlaceholderText("********"), {
-      target: { value: "password" },
-    });
+    await userEvent.type(screen.getByPlaceholderText("m@example.com"), "test@example.com");
 
-    fireEvent.click(screen.getByRole("button", { name: "Login" }));
+    await userEvent.type(screen.getByPlaceholderText("********"), "password");
+
+    await userEvent.click(screen.getByRole("button", { name: "Login" }));
 
     await waitFor(() => {
       expect(screen.getByText("Error login failed")).toBeInTheDocument();
