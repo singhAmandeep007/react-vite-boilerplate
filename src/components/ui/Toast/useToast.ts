@@ -123,7 +123,7 @@ export const reducer = (state: TState, action: TAction): TState => {
   }
 };
 
-const listeners: Array<(state: TState) => void> = [];
+const listeners: ((state: TState) => void)[] = [];
 
 let memoryState: TState = { toasts: [] };
 

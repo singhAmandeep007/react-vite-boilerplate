@@ -5,5 +5,5 @@
     "baseUrl": "../node_modules",
     "types": ["cypress", "@testing-library/cypress"]
   },
-  "include": ["**/*.ts"]
+  "include": ["."]
 }

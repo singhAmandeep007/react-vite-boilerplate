@@ -37,7 +37,7 @@ export type TTypographyProps = React.HTMLAttributes<HTMLHeadingElement> & Varian
 
 const Typography = React.forwardRef<HTMLHeadingElement, TTypographyProps>(
   ({ className, variant, affects, ...props }, ref) => {
-    const Comp = variant || "h1";
+    const Comp = variant ?? "h1";
     return (
       <Comp
         className={cn(typographyVariants({ variant, affects, className }))}

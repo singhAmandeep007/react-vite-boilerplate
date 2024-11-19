@@ -6,7 +6,7 @@ describe("Login", () => {
   });
 
   it("should login successfully", () => {
-    cy.findByRole("button", { name: /login/i }).click();
+    cy.findByRole("button", { name: "Login" }).click();
 
     cy.url().should("include", "/auth/login");
 

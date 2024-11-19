@@ -54,8 +54,7 @@ export const DEFAULT_INIT_OPTION: InitOptions = {
         if (format === "uppercase") return value.toUpperCase();
         if (format === "lowercase") return value.toLowerCase();
       }
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return value;
+      return value as string;
     },
   },
 

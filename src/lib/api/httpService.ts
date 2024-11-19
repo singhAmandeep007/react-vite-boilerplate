@@ -26,12 +26,10 @@ export class KyClient implements THttpServiceClient<Options> {
               status: response.status,
             });
 
-            // expect response to have message field if errored
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-            const result = (await response.json()) as { message?: string } | null;
-
-            // if response doesn't have message use default http error message
-            error.message = result?.message ?? httpErrorMessage;
+            error.message = await response.json().then((res) => {
+              // if response doesn't have message use default http error message
+              return (res as THTTPError)?.message || httpErrorMessage;
+            });
 
             return error;
           },

@@ -3,16 +3,6 @@ import { setupWorker, type SetupWorker } from "msw/browser";
 
 import { handlers } from "../../src/lib/mocker/handlers";
 
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace Cypress {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-    interface Chainable {
-      interceptMswRequest(...handlers: RequestHandler[]): void;
-    }
-  }
-}
-
 let mswWorker: SetupWorker;
 
 before(() => {
