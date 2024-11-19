@@ -8,7 +8,9 @@ import {
   TAuthRefreshAccessTokenRequestPayload,
 } from "./auth.types";
 
-import { apiClient, THTTPError } from "../apiClient";
+import { KyClient, THTTPError } from "../apiClient";
+
+export const authClient = new KyClient();
 
 class AuthApi {
   // endpoints
@@ -30,16 +32,18 @@ class AuthApi {
   // methods
   login(payload: TAuthLoginRequestPayload, options?: THttpServiceOptions) {
     return handleAsync<THTTPError, TAuthLoginResponsePayload>(() =>
-      apiClient.post(this.loginEndpoint, payload, options)
+      authClient.post(this.loginEndpoint, payload, options)
     );
   }
 
   logout(payload: TAuthLogoutRequestPayload, options?: THttpServiceOptions) {
-    return apiClient.post<void, TAuthLogoutRequestPayload>(this.logoutEndpoint, payload, options);
+    return authClient.post<void, TAuthLogoutRequestPayload>(this.logoutEndpoint, payload, options);
   }
 
   refreshAccessToken(payload: TAuthRefreshAccessTokenRequestPayload, options?: THttpServiceOptions) {
-    return handleAsync<THTTPError, TUserToken>(() => apiClient.post(this.refreshAccessTokenEndpoint, payload, options));
+    return handleAsync<THTTPError, TUserToken>(() =>
+      authClient.post(this.refreshAccessTokenEndpoint, payload, options)
+    );
   }
 }
 

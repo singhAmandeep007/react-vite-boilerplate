@@ -11,7 +11,7 @@ export const withAuthHooks: Hooks = {
       // if request is an API request, add Authorization header
       const isAPIRequest = request.url.startsWith(
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        !window?.Cypress ? window.Cypress?.env("VITE_API_URL") : import.meta.env.VITE_API_URL
+        window?.Cypress ? window.Cypress?.env("VITE_API_URL") : import.meta.env.VITE_API_URL
       );
 
       // if request is an API request, add Authorization header and check for token expiration

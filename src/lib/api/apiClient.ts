@@ -1,6 +1,6 @@
 import ky, { Options } from "ky";
 
-import { HttpService, i18n, THttpServiceClient } from "../../modules";
+import { i18n, THttpServiceClient } from "../../modules";
 
 export type TKyClientOptions = Options;
 
@@ -59,5 +59,3 @@ export class KyClient implements THttpServiceClient<Options> {
     return this.kyInstance.delete(url, { json: body, ...options }).json();
   }
 }
-
-export const apiClient = new HttpService(new KyClient());

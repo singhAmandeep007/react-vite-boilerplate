@@ -47,7 +47,6 @@ export function useDocTitle(props: TUseDocTitleProps = { deps: [], options: {} }
   const location = useLocation();
 
   const { deps, options } = props;
-  console.log(location);
 
   // once the page component renders, update HTML document's title
   useEffect(() => {

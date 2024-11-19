@@ -13,12 +13,10 @@ export const Route = createFileRoute("/")({
     }
   },
   component: () => (
-    <>
-      <main>
-        <Navbar />
-        <Home />
-      </main>
+    <main>
+      <Navbar />
+      <Home />
       <Footer />
-    </>
+    </main>
   ),
 });

@@ -14,7 +14,7 @@ export const Footer: FC<PropsWithChildren<TFooterProps>> = () => {
 
   return (
     <footer className="max-h-[--footer-height] overflow-hidden">
-      <hr className="mx-auto w-11/12" />
+      <hr className="mx-auto" />
       <section className="container p-2 text-center">
         <Typography variant={"p"}>
           {t("copyright", {
