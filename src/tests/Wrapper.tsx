@@ -15,7 +15,6 @@ import { Toaster } from "../components/ui/Toast";
 import { afterEach, beforeEach } from "vitest";
 import { ThemeProvider } from "../components/ui/ThemeToggler";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type TProvider<T = any> = {
   Provider: FC<PropsWithChildren<T>>;
   props: Record<string, unknown>;

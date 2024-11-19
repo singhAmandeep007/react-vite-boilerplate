@@ -13,29 +13,39 @@ export const useAppLayout = () => {
 
   const { resetAuthStore, refreshToken } = useStore();
 
-  const handleLogout = useCallback(async () => {
+  const handleLogout = useCallback(() => {
     if (refreshToken) {
       // logout from the server
-      const { error } = await authApi.logout({
-        refreshToken,
-      });
-
-      // show errored show toast
-      if (error) {
-        toast({
-          variant: "destructive",
-          title: error?.message || "Logout failed",
+      authApi
+        .logout({
+          refreshToken,
+        })
+        .then(({ error }) => {
+          // show errored show toast
+          if (error) {
+            toast({
+              variant: "destructive",
+              title: error?.message ?? "Logout failed",
+            });
+          }
+        })
+        .catch(() => {
+          console.log("Logout error");
         });
-      }
     }
 
     // reset auth store
     resetAuthStore();
 
     // invalidate router and finally navigate to home page
-    await router.invalidate().finally(() => {
-      navigate({ to: "/" });
-    });
+    router
+      .invalidate()
+      .finally(() => {
+        void navigate({ to: "/" });
+      })
+      .catch(() => {
+        console.log("Redirect Error");
+      });
   }, [toast, resetAuthStore, refreshToken, router, navigate]);
 
   return {

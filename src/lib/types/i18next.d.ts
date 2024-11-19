@@ -3,6 +3,7 @@ import "i18next";
 
 declare module "i18next" {
   // Extend CustomTypeOptions
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface CustomTypeOptions {
     // custom namespace type, if you changed it
     // defaultNS: "common";

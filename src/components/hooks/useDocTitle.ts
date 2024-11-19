@@ -3,17 +3,18 @@ import React, { useEffect } from "react";
 
 type TUseDocTitleProps = {
   deps: React.DependencyList;
-  options: TitleConfig;
+  options: TTitleConfig;
 };
 
-type TitleConfig = {
+type TTitleConfig = {
   defaultTitle?: string;
   titleMap?: Record<string, string>;
   capitalize?: boolean;
 };
 
-function getAppTitle(location: { pathname: string }, config: TitleConfig = {}) {
+function getAppTitle(location: { pathname: string }, config: TTitleConfig = {}) {
   const {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     defaultTitle = window?.Cypress ? window?.Cypress?.env("VITE_APP_NAME") : import.meta.env.VITE_APP_NAME,
     titleMap = {},
     capitalize = true,
@@ -25,7 +26,7 @@ function getAppTitle(location: { pathname: string }, config: TitleConfig = {}) {
   // get the last segment of the path
   const lastSegment = segments[segments.length - 1];
 
-  if (!lastSegment) return defaultTitle;
+  if (!lastSegment) return defaultTitle as string;
 
   // check if we have a custom mapping for this path
   const fullPath = segments.join("/");

@@ -47,6 +47,7 @@ const sheetVariants = cva(
   }
 );
 
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
     VariantProps<typeof sheetVariants> {}

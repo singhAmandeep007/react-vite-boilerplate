@@ -1,6 +1,6 @@
 import { HttpResponse, http } from "msw";
 
-import { faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker/locale/en";
 
 import { TAuthLoginRequestPayload, TAuthLoginResponsePayload, TAuthLogoutRequestPayload, authApi } from "../../api";
 

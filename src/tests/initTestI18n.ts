@@ -5,7 +5,9 @@ class TestI18n extends I18n {
     try {
       const translations = await Promise.all(
         namespaces.map(async (ns) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           const translation = await import(`../modules/i18n/locales/${language}/${ns}.json`);
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           return { ns, translation: translation.default };
         })
       );
@@ -13,6 +15,7 @@ class TestI18n extends I18n {
       return translations.reduce(
         (acc, { ns, translation }) => ({
           ...acc,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           [ns]: translation,
         }),
         {}
@@ -43,5 +46,5 @@ class TestI18n extends I18n {
 export const initTestI18n = async () => {
   const testI18n = new TestI18n();
 
-  await testI18n.init(LANGS_MAP["enUS"].value);
+  await testI18n.init(LANGS_MAP.enUS.value);
 };

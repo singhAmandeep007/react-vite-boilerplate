@@ -7,8 +7,10 @@ export function merge<T extends object, U extends object[]>(target: T, ...source
   for (const source of sources) {
     for (const key of Object.keys(source)) {
       // @ts-expect-error add type guard
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const targetValue = target[key];
       // @ts-expect-error add type guard
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const sourceValue = source[key];
 
       if (isObject(targetValue) && isObject(sourceValue)) {
@@ -18,6 +20,7 @@ export function merge<T extends object, U extends object[]>(target: T, ...source
       } else if (sourceValue !== undefined) {
         // Overwrite primitives and undefined values from target
         // @ts-expect-error add type guard
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         target[key] = sourceValue;
       }
     }

@@ -33,7 +33,7 @@ export type TNamespaces = (typeof NAMESPACES)[number];
 
 export const DEFAULT_INIT_OPTION: InitOptions = {
   // overrides language detection
-  fallbackLng: LANGS_MAP["enUS"].value,
+  fallbackLng: LANGS_MAP.enUS.value,
   // allowed languages
   supportedLngs: LANGS_VALUES,
   // logging
@@ -54,6 +54,7 @@ export const DEFAULT_INIT_OPTION: InitOptions = {
         if (format === "uppercase") return value.toUpperCase();
         if (format === "lowercase") return value.toLowerCase();
       }
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return value;
     },
   },

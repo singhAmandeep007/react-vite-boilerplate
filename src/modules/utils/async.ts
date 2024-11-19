@@ -15,6 +15,7 @@ export const handleAsync = async <ErrorType = unknown, DataType = unknown>(
 ): Promise<TAsyncTuple<ErrorType, DataType>> => {
   try {
     const data = await promise().catch((error: ErrorType) => {
+      // eslint-disable-next-line @typescript-eslint/only-throw-error
       throw error;
     });
     return { error: null, data };

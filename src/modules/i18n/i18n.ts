@@ -27,7 +27,7 @@ export class I18n {
       withBackend?: boolean;
     };
   } = {}) {
-    initOptions = merge(DEFAULT_INIT_OPTION, initOptions || {});
+    initOptions = merge(DEFAULT_INIT_OPTION, initOptions ?? {});
     config = {
       withBackend: config?.withBackend ?? true,
       withLanguageDetector: config?.withLanguageDetector ?? true,
@@ -50,7 +50,7 @@ export class I18n {
 
             const data = (await modules[`./locales/${language}/${namespace}.json`]()) as Record<string, string>;
 
-            callback(null, (data && data.default) || data);
+            callback(null, data?.default || data);
           } catch (error) {
             console.log(`Error loading translation for ${language}:${namespace}`, error);
             callback(error as i18next.CallbackError, null);
@@ -74,7 +74,7 @@ export class I18n {
                     supportedLng.startsWith(detectedLng)
                   );
 
-                  return matchedSupportedLng || detectedLng;
+                  return matchedSupportedLng ?? detectedLng;
                 },
               },
             }
@@ -100,7 +100,7 @@ export class I18n {
   }
 
   get currentLanguage() {
-    return this.i18n.resolvedLanguage || this.i18n.language;
+    return this.i18n.resolvedLanguage ?? this.i18n.language;
   }
 }
 

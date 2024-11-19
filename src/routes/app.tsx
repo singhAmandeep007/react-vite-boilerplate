@@ -5,8 +5,9 @@ import { AppLayout } from "../pages/App";
 export const Route = createFileRoute("/app")({
   beforeLoad: ({ context }) => {
     if (!context.auth?.user) {
-      throw redirect({
+      redirect({
         to: "/auth/login",
+        throw: true,
       });
     }
   },

@@ -6,9 +6,9 @@ describe("utility types", () => {
     const person = { age: "31", name: "p1" };
     const employee = { age: 31, salary: 1000 };
 
-    type OverwrittenPerson = Overwrite<typeof person, typeof employee>;
+    type TOverwrittenPerson = Overwrite<typeof person, typeof employee>;
 
-    const overwrittenPerson: OverwrittenPerson = {
+    const overwrittenPerson: TOverwrittenPerson = {
       age: 31,
       name: "p1",
       salary: 1000,
@@ -31,9 +31,9 @@ describe("utility types", () => {
       },
     };
 
-    type PartialPerson = RecursivePartial<typeof person>;
+    type TPartialPerson = RecursivePartial<typeof person>;
 
-    const partialPerson: PartialPerson = {
+    const partialPerson: TPartialPerson = {
       name: "p1",
       address: {
         street: "s1",

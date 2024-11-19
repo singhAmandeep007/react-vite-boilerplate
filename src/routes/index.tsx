@@ -6,8 +6,9 @@ import { Footer, Navbar } from "../components/layout";
 export const Route = createFileRoute("/")({
   beforeLoad: ({ context }) => {
     if (context.auth?.user) {
-      throw redirect({
+      redirect({
         to: "/app",
+        throw: true,
       });
     }
   },

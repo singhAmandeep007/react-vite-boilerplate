@@ -42,6 +42,6 @@ export class HttpService<Options extends THttpServiceOptions> implements THttpSe
   }
 
   private configure(customOptions?: Options): Options {
-    return assign(this.client.options, customOptions || {}) as Options;
+    return assign(this.client.options, customOptions ?? {}) as Options;
   }
 }
