@@ -2,7 +2,7 @@ import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { Fragment } from "react";
 
 import { useDocTitle } from "../components/hooks";
-import { TanStackRouterDevelopmentTools } from "../components/utils/developmentTools";
+import { TanStackRouterDevelopmentTools } from "../components/utils";
 
 import { QueryClient } from "@tanstack/react-query";
 import { TAuthStoreState } from "../lib/store";

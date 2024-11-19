@@ -60,4 +60,4 @@ export class KyClient implements THttpServiceClient<Options> {
   }
 }
 
-export const httpService = new HttpService(new KyClient());
+export const apiClient = new HttpService(new KyClient());

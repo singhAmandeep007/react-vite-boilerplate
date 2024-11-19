@@ -6,6 +6,7 @@ import { i18n } from "./modules/i18n/index.ts";
 
 import "./index.css";
 
+// to use Cypress.env in e2e tests
 declare global {
   // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface Window {

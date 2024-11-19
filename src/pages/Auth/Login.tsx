@@ -12,7 +12,7 @@ import {
 } from "../../components/forms";
 import { RouteLink } from "../../components/ui";
 
-import { ReactHookFormDevelopmentTools } from "../../components/utils/developmentTools";
+import { ReactHookFormDevelopmentTools } from "../../components/utils";
 
 import { useLoginForm } from "./useLoginForm";
 

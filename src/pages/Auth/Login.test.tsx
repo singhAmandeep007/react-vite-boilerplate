@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { Login } from "./Login";
 
 import { describe, expect, it } from "vitest";
-import { authApi } from "../../lib";
+import { authApi } from "../../lib/api/auth";
 import { createTestMswServer, http, HttpResponse, render } from "../../tests";
 
 const testServer = createTestMswServer();

@@ -2,7 +2,7 @@ import { useCallback } from "react";
 
 import { useNavigate, useRouter } from "@tanstack/react-router";
 import { useToast } from "../../components/ui";
-import { authApi } from "../../lib/api";
+import { useLogoutMutation } from "../../lib/api/auth";
 import { useStore } from "../../lib/store";
 
 export const useAppLayout = () => {
@@ -13,25 +13,19 @@ export const useAppLayout = () => {
 
   const { resetAuthStore, refreshToken } = useStore();
 
-  const handleLogout = useCallback(() => {
+  const { mutateAsync } = useLogoutMutation({
+    onError: (error) => {
+      toast({
+        variant: "destructive",
+        title: error?.message ?? "Logout failed",
+      });
+    },
+  });
+
+  const handleLogout = useCallback(async () => {
+    console.log(refreshToken);
     if (refreshToken) {
-      // logout from the server
-      authApi
-        .logout({
-          refreshToken,
-        })
-        .then(({ error }) => {
-          // show errored show toast
-          if (error) {
-            toast({
-              variant: "destructive",
-              title: error?.message ?? "Logout failed",
-            });
-          }
-        })
-        .catch(() => {
-          console.log("Logout error");
-        });
+      await mutateAsync({ refreshToken });
     }
 
     // reset auth store
@@ -46,7 +40,7 @@ export const useAppLayout = () => {
       .catch(() => {
         console.log("Redirect Error");
       });
-  }, [toast, resetAuthStore, refreshToken, router, navigate]);
+  }, [resetAuthStore, refreshToken, router, navigate, mutateAsync]);
 
   return {
     handleLogout,

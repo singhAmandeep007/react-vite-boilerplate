@@ -6,7 +6,7 @@ import { ThemeProvider } from "../components/ui/ThemeToggler";
 import { Toaster } from "../components/ui/Toast";
 import { TooltipProvider } from "../components/ui/Tooltip";
 
-import { TanStackReactQueryDevelopmentTools } from "../components/utils/developmentTools";
+import { TanStackReactQueryDevelopmentTools } from "../components/utils";
 
 import { AuthProvider, useAuth } from "./auth";
 import { queryClient, router } from "./router";

@@ -39,7 +39,7 @@ export type TWrapperProps = {
   };
 };
 
-// tanstack router
+// setup and teardown for tanstack router
 let history: RouterHistory;
 beforeEach(() => {
   history = createBrowserHistory();

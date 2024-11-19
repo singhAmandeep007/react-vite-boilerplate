@@ -2,7 +2,12 @@ import { HttpResponse, http } from "msw";
 
 import { faker } from "@faker-js/faker/locale/en";
 
-import { TAuthLoginRequestPayload, TAuthLoginResponsePayload, TAuthLogoutRequestPayload, authApi } from "../../api";
+import {
+  TAuthLoginRequestPayload,
+  TAuthLoginResponsePayload,
+  TAuthLogoutRequestPayload,
+  authApi,
+} from "../../api/auth";
 
 export type THTTPError = {
   message: string;

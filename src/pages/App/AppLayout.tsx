@@ -99,7 +99,7 @@ export const AppLayout = () => {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>Settings</DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => void handleLogout()}>Logout</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </header>

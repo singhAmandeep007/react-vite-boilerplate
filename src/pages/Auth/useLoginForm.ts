@@ -4,7 +4,7 @@ import { DefaultValues, useForm } from "react-hook-form";
 
 import { useNavigate, useRouter } from "@tanstack/react-router";
 import { useToast } from "../../components/ui";
-import { TAuthLoginRequestPayload, authApi, authLoginRequestSchema } from "../../lib/api";
+import { TAuthLoginRequestPayload, authApi, authLoginRequestSchema } from "../../lib/api/auth";
 import { useStore } from "../../lib/store";
 
 export type TUseLoginFormProps = {

@@ -42,6 +42,6 @@ class TestI18n extends I18n {
 
 export const initTestI18n = async () => {
   const testI18n = new TestI18n();
-
+  // NOTE: load translations for en-US in test mode
   await testI18n.init(LANGS_MAP.enUS.value);
 };
