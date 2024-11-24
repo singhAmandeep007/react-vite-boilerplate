@@ -1,19 +1,19 @@
-import { FC, PropsWithChildren } from "react";
+import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { RouteLink } from "../RouteLink";
 
-import { cn } from "../../../modules/utils";
+import { cn } from "../../../utils";
 
 import Logo from "../../../assets/logo.svg?react";
 
 export type TBrandProps = { className?: string };
 
-export const Brand: FC<PropsWithChildren<TBrandProps>> = ({ className }) => {
+export const Brand: FC<TBrandProps> = ({ className }) => {
   const { t } = useTranslation("common");
 
   return (
     <RouteLink
-      to={"/"}
+      to="/"
       className={cn("flex items-center justify-center gap-2", className)}
     >
       <Logo className="h-8 w-8" />

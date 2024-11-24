@@ -4,12 +4,11 @@ The features directory should contain individual features organized by directori
 
 Example:
 
-- src/features/some-feature
+- src/features/someFeature
 
-  - some-feature/assets
-  - some-feature/components
-  - some-feature/hooks
+  - someFeature/assets
+  - someFeature/components
 
-- src/features/another-feature
+- src/features/anotherFeature
 
-  - another-feature/components
+  - anotherFeature/components

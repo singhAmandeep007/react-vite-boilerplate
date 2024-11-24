@@ -10,7 +10,12 @@ import { LangToggler } from "./LangToggler";
 describe("LangToggler", () => {
   const setup = () => {
     return {
-      result: render(<LangToggler />),
+      result: render(<LangToggler />, {
+        config: {
+          withRouter: false,
+          withToaster: false,
+        },
+      }),
     };
   };
 

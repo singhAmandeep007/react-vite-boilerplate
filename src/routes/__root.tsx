@@ -1,11 +1,11 @@
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { Fragment } from "react";
 
+import { TanStackRouterDevelopmentTools } from "../components/developmentTools";
 import { useDocTitle } from "../components/hooks";
-import { TanStackRouterDevelopmentTools } from "../components/utils";
 
 import { QueryClient } from "@tanstack/react-query";
-import { TAuthStoreState } from "../lib/store";
+import { TAuthStoreState } from "../store";
 
 type TRouterContext = {
   auth: TAuthStoreState | null;

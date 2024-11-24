@@ -2,7 +2,7 @@ import * as i18next from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
-import { merge } from "../utils";
+import { merge } from "../../utils";
 
 import { DEFAULT_INIT_OPTION, TLangsValues, TNamespaces } from "./consts";
 

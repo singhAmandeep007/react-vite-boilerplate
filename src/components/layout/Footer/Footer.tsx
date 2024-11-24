@@ -1,16 +1,13 @@
-import { FC, PropsWithChildren } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Typography } from "../../ui/Typography";
 
-export type TFooterProps = Record<string, never>;
+const year = new Date().getFullYear();
 
-export const Footer: FC<PropsWithChildren<TFooterProps>> = () => {
+export const Footer = () => {
   const { t } = useTranslation("common", {
     keyPrefix: "app",
   });
-
-  const year = new Date().getFullYear();
 
   return (
     <footer className="max-h-[--footer-height] overflow-hidden">

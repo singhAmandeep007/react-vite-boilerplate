@@ -5,6 +5,7 @@ import { App } from "./app/App.tsx";
 import { i18n } from "./modules/i18n/index.ts";
 
 import "./index.css";
+import { isDevelopment } from "./utils";
 
 // to use Cypress.env in e2e tests
 declare global {
@@ -17,8 +18,8 @@ declare global {
 async function setupApp() {
   await i18n.configure();
 
-  if (!window?.Cypress && import.meta.env.DEV) {
-    const mocker = await import("./lib/mocker");
+  if (isDevelopment) {
+    const mocker = await import("./mocker/index.ts");
 
     await mocker.runServer();
   }

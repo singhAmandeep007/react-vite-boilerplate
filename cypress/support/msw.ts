@@ -1,12 +1,11 @@
 import { RequestHandler } from "msw";
 import { setupWorker, type SetupWorker } from "msw/browser";
 
-import { handlers } from "../../src/lib/mocker/handlers";
+import { handlers } from "../../src/mocker/handlers";
 
 let mswWorker: SetupWorker;
 
 before(() => {
-  // NOTE: if using msw, setup the msw worker
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   mswWorker = setupWorker(...handlers);
 
@@ -18,8 +17,8 @@ before(() => {
   );
 });
 
-// NOTE: before each test, reset the handlers, if using msw
-// Fires before the test and all before and beforeEach hooks run.
+// NOTE: before each test, reset the handlers to the initial state.
+// fires before the test and all before and beforeEach hooks run.
 Cypress.on("test:before:run", () => {
   if (mswWorker) {
     mswWorker.resetHandlers();

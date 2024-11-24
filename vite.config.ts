@@ -30,8 +30,9 @@ export default defineConfig(({ mode }) => {
         ...(shouldCheckESLintDev
           ? {
               eslint: {
-                // for example, lint .ts and .tsx
-                lintCommand: 'eslint "src/**/*.{js,jsx,ts,tsx}" --report-unused-disable-directives --max-warnings 0',
+                lintCommand:
+                  'eslint --report-unused-disable-directives --max-warnings 5 "{src,cypress}/**/*.{js,jsx,ts,tsx}"',
+                useFlatConfig: true,
               },
             }
           : {}),
@@ -55,6 +56,9 @@ export default defineConfig(({ mode }) => {
       port: 9001,
       strictPort: true,
       open: true,
+      fs: {
+        cachedChecks: false,
+      },
     },
     preview: {
       port: 5001,

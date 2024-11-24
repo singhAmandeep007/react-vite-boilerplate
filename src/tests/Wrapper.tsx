@@ -10,10 +10,9 @@ import {
   RouterProvider,
 } from "@tanstack/react-router";
 
-import { Toaster } from "../components/ui/Toast";
-
 import { afterEach, beforeEach } from "vitest";
-import { ThemeProvider } from "../components/ui/ThemeToggler";
+
+import { ThemeProvider, Toaster } from "../components/ui";
 
 type TProvider<T = any> = {
   Provider: FC<PropsWithChildren<T>>;

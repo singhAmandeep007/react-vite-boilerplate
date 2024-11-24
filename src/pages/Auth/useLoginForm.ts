@@ -3,9 +3,9 @@ import { FormEvent, useCallback } from "react";
 import { DefaultValues, useForm } from "react-hook-form";
 
 import { useNavigate, useRouter } from "@tanstack/react-router";
+import { TAuthLoginRequestPayload, authLoginRequestSchema, authService } from "../../api/auth";
 import { useToast } from "../../components/ui";
-import { TAuthLoginRequestPayload, authApi, authLoginRequestSchema } from "../../lib/api/auth";
-import { useStore } from "../../lib/store";
+import { useStore } from "../../store/store";
 
 export type TUseLoginFormProps = {
   defaultValues?: DefaultValues<TAuthLoginRequestPayload>;
@@ -28,7 +28,7 @@ export const useLoginForm = ({ defaultValues }: TUseLoginFormProps = {}) => {
     (e: FormEvent<HTMLFormElement>) => {
       form
         .handleSubmit(async (payload) => {
-          const { data, error } = await authApi.login(payload);
+          const { data, error } = await authService.login(payload);
 
           if (data) {
             // update auth store with new accessToken, refreshToken, and expiresAt
@@ -40,9 +40,10 @@ export const useLoginForm = ({ defaultValues }: TUseLoginFormProps = {}) => {
           }
 
           if (error) {
+            const errorResponse = await error.response.json();
             toast({
               variant: "destructive",
-              title: error?.message || "Login failed",
+              title: errorResponse?.message ?? error?.message,
             });
           }
         })(e)

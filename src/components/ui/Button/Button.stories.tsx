@@ -2,7 +2,6 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { Button } from "./Button";
 
-// this default export determines where your story goes in the story list
 const meta: Meta<typeof Button> = {
   component: Button,
 };

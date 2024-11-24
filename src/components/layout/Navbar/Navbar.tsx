@@ -1,14 +1,10 @@
-import { FC, PropsWithChildren } from "react";
-
 import { useTranslation } from "react-i18next";
 
 import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "..";
 import { Brand, Button, LangToggler, RouteLink, ThemeToggler } from "../../ui";
+import { Sheet, SheetContent, SheetTrigger } from "../Sheet";
 
-export type TNavbarProps = Record<string, never>;
-
-export const Navbar: FC<PropsWithChildren<TNavbarProps>> = () => {
+export const Navbar = () => {
   const { t } = useTranslation("common");
 
   return (

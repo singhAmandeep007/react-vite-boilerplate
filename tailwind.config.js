@@ -1,6 +1,6 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
-import { BREAKPOINTS } from "./src/lib/config";
+import { BREAKPOINTS } from "./src/config";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

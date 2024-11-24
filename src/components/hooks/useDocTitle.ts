@@ -1,10 +1,7 @@
 import { useLocation } from "@tanstack/react-router";
 import React, { useEffect } from "react";
 
-type TUseDocTitleProps = {
-  deps: React.DependencyList;
-  options: TTitleConfig;
-};
+import { getEnvValue } from "../../utils";
 
 type TTitleConfig = {
   defaultTitle?: string;
@@ -13,12 +10,7 @@ type TTitleConfig = {
 };
 
 function getAppTitle(location: { pathname: string }, config: TTitleConfig = {}) {
-  const {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    defaultTitle = window?.Cypress ? window?.Cypress?.env("VITE_APP_NAME") : import.meta.env.VITE_APP_NAME,
-    titleMap = {},
-    capitalize = true,
-  } = config;
+  const { defaultTitle = getEnvValue("VITE_APP_NAME"), titleMap = {}, capitalize = true } = config;
 
   // remove leading and trailing slashes and split into segments
   const segments = location.pathname.split("/").filter(Boolean);
@@ -26,7 +18,7 @@ function getAppTitle(location: { pathname: string }, config: TTitleConfig = {}) 
   // get the last segment of the path
   const lastSegment = segments[segments.length - 1];
 
-  if (!lastSegment) return defaultTitle as string;
+  if (!lastSegment) return defaultTitle;
 
   // check if we have a custom mapping for this path
   const fullPath = segments.join("/");
@@ -42,6 +34,11 @@ function getAppTitle(location: { pathname: string }, config: TTitleConfig = {}) 
 
   return title;
 }
+
+type TUseDocTitleProps = {
+  deps: React.DependencyList;
+  options: TTitleConfig;
+};
 
 export function useDocTitle(props: TUseDocTitleProps = { deps: [], options: {} }) {
   const location = useLocation();

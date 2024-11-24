@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 
 import { useNavigate, useRouter } from "@tanstack/react-router";
+import { useLogoutMutation } from "../../api/auth";
 import { useToast } from "../../components/ui";
-import { useLogoutMutation } from "../../lib/api/auth";
-import { useStore } from "../../lib/store";
+import { useStore } from "../../store";
 
 export const useAppLayout = () => {
   const { toast } = useToast();
@@ -23,7 +23,6 @@ export const useAppLayout = () => {
   });
 
   const handleLogout = useCallback(async () => {
-    console.log(refreshToken);
     if (refreshToken) {
       await mutateAsync({ refreshToken });
     }

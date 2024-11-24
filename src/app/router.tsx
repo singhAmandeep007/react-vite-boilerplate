@@ -4,7 +4,7 @@ import { routeTree } from "../routeTree.gen";
 
 export const queryClient = new QueryClient();
 
-// Set up a Router instance
+// set up a Router instance
 export const router = createRouter({
   routeTree,
   context: {
@@ -12,12 +12,12 @@ export const router = createRouter({
     queryClient,
   },
   defaultPreload: "intent",
-  // Since we're using React Query, we don't want loader calls to ever be stale
-  // This will ensure that the loader is always called when the route is preloaded or visited
+  // since we're using React Query, we don't want loader calls to ever be stale
+  // this will ensure that the loader is always called when the route is preloaded or visited
   defaultPreloadStaleTime: 0,
 });
 
-// Register things for typesafety
+// register things for typesafety
 declare module "@tanstack/react-router" {
   // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface Register {

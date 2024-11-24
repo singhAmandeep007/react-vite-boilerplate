@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useCallback, useContext, useEffect, useState } from "react";
 
-import { type TTheme } from "../../../lib/config/theme";
+import { type TTheme } from "./theme.types";
 
 export type TThemeProviderProps = {
   children: ReactNode;

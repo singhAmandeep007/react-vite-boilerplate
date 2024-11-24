@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from "react";
-import { useGetPostsQuery } from "../../lib/api/posts";
+import { useGetPostsQuery } from "../../api/posts";
 
 export type TDashboardProps = Record<string, never>;
 
