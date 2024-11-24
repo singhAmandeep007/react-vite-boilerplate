@@ -37,6 +37,7 @@ dist-ssr
 
 # storybook
 *storybook.log
+storybook-static
 
 # tanstack router
 routeTree.gen.ts

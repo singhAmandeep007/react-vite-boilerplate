@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormEvent, useCallback } from "react";
 import { DefaultValues, useForm } from "react-hook-form";
 
-import { useNavigate, useRouter } from "@tanstack/react-router";
+import { useRouter } from "@tanstack/react-router";
 import { TAuthLoginRequestPayload, authLoginRequestSchema, authService } from "../../api/auth";
 import { useToast } from "../../components/ui";
 import { useStore } from "../../store/store";
@@ -20,7 +20,6 @@ export const useLoginForm = ({ defaultValues }: TUseLoginFormProps = {}) => {
   const { toast } = useToast();
 
   const router = useRouter();
-  const navigate = useNavigate();
 
   const updateAuthStore = useStore.use.updateAuthStore();
 
@@ -35,8 +34,6 @@ export const useLoginForm = ({ defaultValues }: TUseLoginFormProps = {}) => {
             updateAuthStore(data);
             // invalidate router
             await router.invalidate();
-            // navigate to app page
-            await navigate({ to: "/app" });
           }
 
           if (error) {
@@ -49,7 +46,7 @@ export const useLoginForm = ({ defaultValues }: TUseLoginFormProps = {}) => {
         })(e)
         .catch(console.error);
     },
-    [form, toast, updateAuthStore, router, navigate]
+    [form, toast, updateAuthStore, router]
   );
 
   return {

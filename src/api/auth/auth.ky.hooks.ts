@@ -34,6 +34,7 @@ export const withAuthHooks: Hooks = {
               };
             });
 
+            // set Authorization header with accessToken
             request.headers.set("Authorization", `Bearer ${data.accessToken}`);
           }
 

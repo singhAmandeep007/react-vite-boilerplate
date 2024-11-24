@@ -4,8 +4,12 @@ import { ApiService, TApiServiceOptions } from "../apiService";
 
 import { withAuthHooks } from "../auth/auth.ky.hooks";
 
-const apiService = new ApiService({
-  hooks: withAuthHooks,
+const apiService = new ApiService();
+
+apiService.extend({
+  hooks: {
+    ...withAuthHooks,
+  },
 });
 
 class UserService {

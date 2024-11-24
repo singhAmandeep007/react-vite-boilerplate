@@ -60,6 +60,10 @@ export class ApiService implements THttpService<Options> {
     });
   }
 
+  public extend(options: Options) {
+    this.kyInstance = this.kyInstance.extend(options);
+  }
+
   public async get<R = unknown>(url: string, options?: Options): Promise<R> {
     return this.kyInstance.get(url, options).json();
   }

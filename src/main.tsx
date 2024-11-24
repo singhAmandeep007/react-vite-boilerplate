@@ -2,12 +2,12 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./app/App.tsx";
 
-import { i18n } from "./modules/i18n/index.ts";
+import { i18n } from "./modules/i18n";
 
 import "./index.css";
 import { isDevelopment } from "./utils";
 
-// to use Cypress.env in e2e tests
+// to use Cypress.env in e2e environment
 declare global {
   // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface Window {
