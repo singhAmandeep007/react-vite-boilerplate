@@ -33,7 +33,6 @@
     "test:unit": "vitest run",
     "test:unit:coverage": "vitest run --coverage",
     "test:unit:watch": "vitest watch",
-    "test:unit:typecheck": "vitest run --typecheck",
     "test:unit:ui": "vitest --ui --coverage.enabled=true",
     "test:e2e": "npm run dev:test 'cypress open'",
     "test:e2e:headless": "npm run dev:test 'cypress run'",

@@ -91,27 +91,22 @@ The folder structure is as follows:
 │   │   ├── hooks
 │   │   ├── layout
 │   │   ├── ui
-│   │   └── utils
-│   ├── features
-│   ├── lib
-│   │   ├── api
-│   │   ├── config
-│   │   ├── mocker
-│   │   ├── store
-│   │   ├── types
-│   │   └── index.ts
+│   │   └── developmentTools.tsx
+│   ├── config
+│   ├── feature
+│   ├── mocker
 │   ├── modules
-│   │   ├── http
-│   │   ├── i18n
-│   │   ├── utils
-│   │   └── index.ts
+│   │   └── i18n
 │   ├── pages
 │   │   ├── app
 │   │   ├── home
 │   │   └── auth
 │   ├── routes
+│   ├── store
+│   │   └── auth
 │   ├── tests
 │   ├── types
+│   ├── utils
 │   └── index.css
 │   └── main.tsx
 ├── index.html
@@ -150,11 +145,7 @@ npm run test:unit:watch
 npm run test:unit:ui
 ```
 
-If you'd like to run only tests for your types, execute the following command:
-
-```sh
-npm run test:unit:typecheck
-```
+Testing types is also supported with vitest and this application is set up to run tests for types using it. By default all tests inside `*.test-d.ts` files are considered type tests.
 
 ### End-to-End (E2E) Testing
 
@@ -185,7 +176,7 @@ This project includes a set of Devtools. Some are additional package dependencie
 - [@tanstack/router-devtools](https://tanstack.com/router/v1/docs/devtools) - Dedicated dev tools to help visualize the inner workings of TanStack Router
 - [@hookform/DevTools](https://react-hook-form.com/dev-tools) - React Hook Form Devtools to help debug forms with validation
 
-A set of utility components are provided in `src/components/utils/development-tools/`. These [wrapper components](https://tanstack.com/router/v1/docs/framework/react/devtools#only-importing-and-using-devtools-in-development) check whether the application is running in development or production mode and render the component or null respectively. In other words, you can confidently use them during development without having to worry about them showing up for end users in production.
+A set of utility components are provided in [developmentTools.tsx](src/components/developmentTools.tsx). These [wrapper components](https://tanstack.com/router/v1/docs/framework/react/devtools#only-importing-and-using-devtools-in-development) check whether the application is running in development or production mode and render the component or null respectively. In other words, you can confidently use them during development without having to worry about them showing up for end users in production.
 
 **TanStack Query Devtools** are ready to go out of the box. The development vs. production rendering mechanism is built into the devtools. If you do wish to [render the devtools in production](https://tanstack.com/query/latest/docs/react/devtools) you can freely do so by following the TanStack Query Devtools documentation. The devtools component can be found in [App.tsx](/src/app/App.tsx).
 
@@ -235,7 +226,7 @@ To reiterate, if you wish to restrict the Devtools to development builds use the
 
 - [Radash](https://radash-docs.vercel.app/docs/getting-started) - A powerful utility library with functions having strong types and zero dependencies
 - [date-fns](https://date-fns.org/) - Modern JavaScript date utility library
-- [ky](https://github.com/sindresorhus/ky#readme)
+- [ky](https://github.com/sindresorhus/ky#readme) - A tiny and elegant HTTP client which provides cool benefits over plain fetch
 
 ### Internationalization
 
