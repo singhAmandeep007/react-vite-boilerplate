@@ -9,7 +9,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl: "http://localhost:5001",
+    baseUrl: "http://localhost:9001",
     specPattern: "cypress/specs/**/*.cy.{js,jsx,ts,tsx}",
 
     env: {
