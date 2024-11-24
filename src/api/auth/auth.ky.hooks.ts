@@ -13,18 +13,35 @@ export const withAuthHooks: Hooks = {
         // check if accessToken is expired
         if (Date.now() >= expiresAt) {
           // refresh token using refreshToken api
-          const { data, error } = await authService.refreshAccessToken({ refreshToken, accessToken });
+          const { data, error } = await authService.refreshAccessToken(
+            { refreshToken },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
 
           if (data) {
             // update auth store with new accessToken, refreshToken, and expiresAt
-            useStore.use.updateAuthStore()(data);
+            useStore.setState((prev) => {
+              return {
+                ...prev,
+                accessToken: data.accessToken,
+                refreshToken: data.refreshToken,
+                expiresAt: data.expiresAt,
+              };
+            });
 
             request.headers.set("Authorization", `Bearer ${data.accessToken}`);
           }
 
           if (error) {
             // if refresh token fails, reset auth store
-            useStore.use.resetAuthStore();
+            useStore.getState().resetAuthStore();
+
+            location.reload();
           }
         } else {
           // set Authorization header with accessToken

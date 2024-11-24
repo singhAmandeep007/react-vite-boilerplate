@@ -24,7 +24,7 @@ export const useAppLayout = () => {
 
   const handleLogout = useCallback(async () => {
     if (refreshToken) {
-      await mutateAsync({ refreshToken });
+      await mutateAsync();
     }
 
     // reset auth store

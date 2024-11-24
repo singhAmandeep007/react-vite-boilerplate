@@ -34,7 +34,7 @@ export const AppLayout = () => {
       <div className="h-[calc(100dvh-var(--footer-height))]">
         <Sidebar />
 
-        <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+        <div className="flex h-full flex-col sm:gap-4 sm:py-4 sm:pl-14">
           <header className="sticky top-0 z-[--z-navbar] flex h-[--navbar-height] items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
             <Sheet>
               <SheetTrigger asChild>
@@ -107,7 +107,7 @@ export const AppLayout = () => {
             </DropdownMenu>
           </header>
 
-          <div className="grid h-full flex-1 items-start gap-4 overflow-scroll p-4">
+          <div className="grid flex-1 items-start gap-4 overflow-scroll p-4">
             <div>App</div>
             <Outlet />
           </div>

@@ -3,7 +3,6 @@ import { handleAsync } from "../../utils";
 import {
   TAuthLoginRequestPayload,
   TAuthLoginResponsePayload,
-  TAuthLogoutRequestPayload,
   TAuthRefreshAccessTokenRequestPayload,
   TAuthRefreshAccessTokenResponsePayload,
 } from "./auth.types";
@@ -27,8 +26,8 @@ class AuthService {
     );
   }
 
-  logout(payload: TAuthLogoutRequestPayload, options?: TApiServiceOptions) {
-    return apiService.post<void, TAuthLogoutRequestPayload>(this.logoutEndpoint, payload, options);
+  logout(options?: TApiServiceOptions) {
+    return apiService.post<void>(this.logoutEndpoint, undefined, options);
   }
 
   refreshAccessToken(payload: TAuthRefreshAccessTokenRequestPayload, options?: TApiServiceOptions) {

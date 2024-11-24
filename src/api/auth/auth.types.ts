@@ -12,8 +12,6 @@ export type TAuthLoginResponsePayload = {
   user: TUser;
 } & TUserToken;
 
-export type TAuthLogoutRequestPayload = Pick<TUserToken, "refreshToken">;
-
-export type TAuthRefreshAccessTokenRequestPayload = Pick<TUserToken, "refreshToken" | "accessToken">;
+export type TAuthRefreshAccessTokenRequestPayload = Pick<TUserToken, "refreshToken">;
 
 export type TAuthRefreshAccessTokenResponsePayload = TUserToken;

@@ -5,7 +5,8 @@ import { faker } from "@faker-js/faker/locale/en";
 import {
   TAuthLoginRequestPayload,
   TAuthLoginResponsePayload,
-  TAuthLogoutRequestPayload,
+  TAuthRefreshAccessTokenRequestPayload,
+  TAuthRefreshAccessTokenResponsePayload,
   authService,
 } from "../../api/auth";
 
@@ -20,6 +21,7 @@ export const login = http.post<never, TAuthLoginRequestPayload, TAuthLoginRespon
   async ({ request }) => {
     // return HttpResponse.json({ message: "Check email and password" }, { status: 401 });
     const { email } = await request.json();
+
     const response: TAuthLoginResponsePayload = {
       user: {
         id: faker.string.uuid(),
@@ -43,19 +45,24 @@ export const login = http.post<never, TAuthLoginRequestPayload, TAuthLoginRespon
   }
 );
 
-export const logout = http.post<never, TAuthLogoutRequestPayload>(
-  apiURL(authService.logoutEndpoint).toString(),
-  async ({ request }) => {
-    const { refreshToken } = await request.json();
+export const logout = http.post(apiURL(authService.logoutEndpoint).toString(), () => {
+  return HttpResponse.json({}, { status: 200 });
+});
 
-    if (!refreshToken) {
-      return HttpResponse.json({ message: "Refresh token is required" }, { status: 400 });
-    }
+export const refreshAccessToken = http.post<
+  never,
+  TAuthRefreshAccessTokenRequestPayload,
+  TAuthRefreshAccessTokenResponsePayload | THTTPError
+>(apiURL(authService.refreshAccessTokenEndpoint).toString(), async ({ request }) => {
+  const { refreshToken } = await request.json();
 
-    return HttpResponse.json({}, { status: 200 });
+  if (!refreshToken) {
+    return HttpResponse.json({ message: "Refresh token is required" }, { status: 400 });
   }
-);
 
-export const refreshToken = http.post(apiURL(authService.refreshAccessTokenEndpoint).toString(), () => {
-  return HttpResponse.json(faker.string.uuid());
+  return HttpResponse.json({
+    accessToken: faker.string.uuid(),
+    refreshToken: faker.string.uuid(),
+    expiresAt: faker.date.future().getTime(),
+  });
 });

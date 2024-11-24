@@ -19,7 +19,7 @@ export const store: StateCreator<TStore> = (...args) => ({
 const isDebugMode = isDevelopment && Boolean(import.meta.env.VITE_VITEST_ENV) === false;
 
 export const STORE_VERSION = 1;
-export const STORE_NAME = "tasksManagerStore";
+export const STORE_NAME = "appStore";
 export const useStoreBase = create<TStore>()(
   logger(
     devtools(
