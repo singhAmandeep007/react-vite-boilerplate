@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-import { useRouter } from "@tanstack/react-router";
+import { useNavigate, useRouter } from "@tanstack/react-router";
 import { useLogoutMutation } from "../../api/auth";
 import { useToast } from "../../components/ui";
 import { useStore } from "../../store";
@@ -9,6 +9,7 @@ export const useAppLayout = () => {
   const { toast } = useToast();
 
   const router = useRouter();
+  const navigate = useNavigate();
 
   const { resetAuthStore } = useStore();
 
@@ -28,10 +29,15 @@ export const useAppLayout = () => {
     resetAuthStore();
 
     // invalidate router and finally navigate to home page
-    router.invalidate().catch(() => {
-      console.log("Redirect Error");
-    });
-  }, [resetAuthStore, router, mutateAsync]);
+    router
+      .invalidate()
+      .finally(() => {
+        void navigate({ to: "/" });
+      })
+      .catch(() => {
+        console.log("Redirect Error");
+      });
+  }, [resetAuthStore, router, mutateAsync, navigate]);
 
   return {
     handleLogout,
