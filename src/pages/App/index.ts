@@ -1,3 +1,3 @@
 export * from "./AppLayout";
-export * from "./Dashboard";
+export * from "./Posts";
 export * from "./Settings";

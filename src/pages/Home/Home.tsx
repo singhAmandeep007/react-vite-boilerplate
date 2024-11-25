@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useMemo } from "react";
+import { useMemo } from "react";
 
 import { Trans, useTranslation } from "react-i18next";
 
@@ -6,14 +6,12 @@ import { Button, RouteLink, Typography } from "../../components/ui";
 
 import { ArrowRight, ListTodo, NotebookPen, Repeat, SquareCheckBig } from "lucide-react";
 
-export type THomeProps = Record<string, never>;
-
 type TSequence = {
   icon: JSX.Element;
   name: string;
 };
 
-export const Home: FC<PropsWithChildren<THomeProps>> = () => {
+export const Home = () => {
   const { t } = useTranslation("homePage");
 
   const sequence: TSequence[] = useMemo(
@@ -101,7 +99,7 @@ export const Home: FC<PropsWithChildren<THomeProps>> = () => {
         </div>
 
         {/* Shadow effect */}
-        <div className="absolute -z-10 h-1/2 w-1/2 animate-shadow-pulse rounded-[50%] blur-[120px]"></div>
+        <div className="absolute -z-10 h-1/2 w-1/2 animate-shadow-pulse rounded-[80%] blur-[150px]"></div>
       </section>
       <section className="container mb-16 h-full">
         <Typography

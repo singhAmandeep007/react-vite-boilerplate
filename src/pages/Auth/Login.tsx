@@ -1,5 +1,3 @@
-import { FC, PropsWithChildren } from "react";
-
 import {
   Form,
   FormButton,
@@ -16,9 +14,7 @@ import { ReactHookFormDevelopmentTools } from "../../components/developmentTools
 
 import { useLoginForm } from "./useLoginForm";
 
-export type TLoginProps = Record<string, never>;
-
-export const Login: FC<PropsWithChildren<TLoginProps>> = () => {
+export const Login = () => {
   const {
     form,
     form: {

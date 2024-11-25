@@ -1,9 +1,6 @@
-import { FC, PropsWithChildren } from "react";
 import { useGetPostsQuery } from "../../api/posts";
 
-export type TDashboardProps = Record<string, never>;
-
-export const Dashboard: FC<PropsWithChildren<TDashboardProps>> = () => {
+export const Posts = () => {
   const { data, isSuccess, isError, error } = useGetPostsQuery({
     retry: false,
   });

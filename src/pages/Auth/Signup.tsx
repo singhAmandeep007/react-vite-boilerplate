@@ -1,7 +1,3 @@
-import { FC, PropsWithChildren } from "react";
-
-export type TSignupProps = Record<string, never>;
-
-export const Signup: FC<PropsWithChildren<TSignupProps>> = () => {
+export const Signup = () => {
   return <div>Signup</div>;
 };

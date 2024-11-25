@@ -22,7 +22,7 @@ import {
 
 import { Input } from "../../components/forms";
 
-import { Home, PanelLeft, Search, Settings as SettingsIcon } from "lucide-react";
+import { PanelLeft, Search, Settings as SettingsIcon } from "lucide-react";
 
 import { useAppLayout } from "./useAppLayout";
 
@@ -53,13 +53,6 @@ export const AppLayout = () => {
               >
                 <nav className="grid gap-6 text-lg font-medium">
                   <Brand className="justify-start" />
-                  <RouteLink
-                    to="/app/dashboard"
-                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  >
-                    <Home className="icon" />
-                    Dashboard
-                  </RouteLink>
 
                   <RouteLink
                     to="/app/settings"
@@ -79,8 +72,10 @@ export const AppLayout = () => {
                 className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
               />
             </div>
-            <LangToggler />
-            <ThemeToggler />
+            <div className="flex gap-1">
+              <LangToggler />
+              <ThemeToggler />
+            </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -100,7 +95,9 @@ export const AppLayout = () => {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem>
+                  <RouteLink to="/app/settings">Settings</RouteLink>
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => void handleLogout()}>Logout</DropdownMenuItem>
               </DropdownMenuContent>
@@ -108,7 +105,6 @@ export const AppLayout = () => {
           </header>
 
           <div className="grid flex-1 items-start gap-4 overflow-scroll p-4">
-            <div>App</div>
             <Outlet />
           </div>
         </div>

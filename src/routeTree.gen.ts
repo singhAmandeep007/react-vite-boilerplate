@@ -12,7 +12,7 @@
 
 import { Route as rootRoute } from "./routes/__root";
 import { Route as AppImport } from "./routes/app";
-import { Route as AppDashboardImport } from "./routes/app/dashboard";
+import { Route as AppIndexImport } from "./routes/app/index";
 import { Route as AppSettingsImport } from "./routes/app/settings";
 import { Route as AuthImport } from "./routes/auth";
 import { Route as AuthForgotPasswordImport } from "./routes/auth/forgotPassword";
@@ -40,6 +40,12 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any);
 
+const AppIndexRoute = AppIndexImport.update({
+  id: "/",
+  path: "/",
+  getParentRoute: () => AppRoute,
+} as any);
+
 const AuthSignupRoute = AuthSignupImport.update({
   id: "/signup",
   path: "/signup",
@@ -61,12 +67,6 @@ const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
 const AppSettingsRoute = AppSettingsImport.update({
   id: "/settings",
   path: "/settings",
-  getParentRoute: () => AppRoute,
-} as any);
-
-const AppDashboardRoute = AppDashboardImport.update({
-  id: "/dashboard",
-  path: "/dashboard",
   getParentRoute: () => AppRoute,
 } as any);
 
@@ -94,13 +94,6 @@ declare module "@tanstack/react-router" {
       fullPath: "/auth";
       preLoaderRoute: typeof AuthImport;
       parentRoute: typeof rootRoute;
-    };
-    "/app/dashboard": {
-      id: "/app/dashboard";
-      path: "/dashboard";
-      fullPath: "/app/dashboard";
-      preLoaderRoute: typeof AppDashboardImport;
-      parentRoute: typeof AppImport;
     };
     "/app/settings": {
       id: "/app/settings";
@@ -130,19 +123,26 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthSignupImport;
       parentRoute: typeof AuthImport;
     };
+    "/app/": {
+      id: "/app/";
+      path: "/";
+      fullPath: "/app/";
+      preLoaderRoute: typeof AppIndexImport;
+      parentRoute: typeof AppImport;
+    };
   }
 }
 
 // Create and export the route tree
 
 interface AppRouteChildren {
-  AppDashboardRoute: typeof AppDashboardRoute;
   AppSettingsRoute: typeof AppSettingsRoute;
+  AppIndexRoute: typeof AppIndexRoute;
 }
 
 const AppRouteChildren: AppRouteChildren = {
-  AppDashboardRoute: AppDashboardRoute,
   AppSettingsRoute: AppSettingsRoute,
+  AppIndexRoute: AppIndexRoute,
 };
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren);
@@ -165,22 +165,21 @@ export interface FileRoutesByFullPath {
   "/": typeof IndexRoute;
   "/app": typeof AppRouteWithChildren;
   "/auth": typeof AuthRouteWithChildren;
-  "/app/dashboard": typeof AppDashboardRoute;
   "/app/settings": typeof AppSettingsRoute;
   "/auth/forgotPassword": typeof AuthForgotPasswordRoute;
   "/auth/login": typeof AuthLoginRoute;
   "/auth/signup": typeof AuthSignupRoute;
+  "/app/": typeof AppIndexRoute;
 }
 
 export interface FileRoutesByTo {
   "/": typeof IndexRoute;
-  "/app": typeof AppRouteWithChildren;
   "/auth": typeof AuthRouteWithChildren;
-  "/app/dashboard": typeof AppDashboardRoute;
   "/app/settings": typeof AppSettingsRoute;
   "/auth/forgotPassword": typeof AuthForgotPasswordRoute;
   "/auth/login": typeof AuthLoginRoute;
   "/auth/signup": typeof AuthSignupRoute;
+  "/app": typeof AppIndexRoute;
 }
 
 export interface FileRoutesById {
@@ -188,11 +187,11 @@ export interface FileRoutesById {
   "/": typeof IndexRoute;
   "/app": typeof AppRouteWithChildren;
   "/auth": typeof AuthRouteWithChildren;
-  "/app/dashboard": typeof AppDashboardRoute;
   "/app/settings": typeof AppSettingsRoute;
   "/auth/forgotPassword": typeof AuthForgotPasswordRoute;
   "/auth/login": typeof AuthLoginRoute;
   "/auth/signup": typeof AuthSignupRoute;
+  "/app/": typeof AppIndexRoute;
 }
 
 export interface FileRouteTypes {
@@ -201,31 +200,23 @@ export interface FileRouteTypes {
     | "/"
     | "/app"
     | "/auth"
-    | "/app/dashboard"
     | "/app/settings"
     | "/auth/forgotPassword"
     | "/auth/login"
-    | "/auth/signup";
+    | "/auth/signup"
+    | "/app/";
   fileRoutesByTo: FileRoutesByTo;
-  to:
-    | "/"
-    | "/app"
-    | "/auth"
-    | "/app/dashboard"
-    | "/app/settings"
-    | "/auth/forgotPassword"
-    | "/auth/login"
-    | "/auth/signup";
+  to: "/" | "/auth" | "/app/settings" | "/auth/forgotPassword" | "/auth/login" | "/auth/signup" | "/app";
   id:
     | "__root__"
     | "/"
     | "/app"
     | "/auth"
-    | "/app/dashboard"
     | "/app/settings"
     | "/auth/forgotPassword"
     | "/auth/login"
-    | "/auth/signup";
+    | "/auth/signup"
+    | "/app/";
   fileRoutesById: FileRoutesById;
 }
 
@@ -260,8 +251,8 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
     "/app": {
       "filePath": "app.tsx",
       "children": [
-        "/app/dashboard",
-        "/app/settings"
+        "/app/settings",
+        "/app/"
       ]
     },
     "/auth": {
@@ -271,10 +262,6 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
         "/auth/login",
         "/auth/signup"
       ]
-    },
-    "/app/dashboard": {
-      "filePath": "app/dashboard.tsx",
-      "parent": "/app"
     },
     "/app/settings": {
       "filePath": "app/settings.tsx",
@@ -291,6 +278,10 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
     "/auth/signup": {
       "filePath": "auth/signup.tsx",
       "parent": "/auth"
+    },
+    "/app/": {
+      "filePath": "app/index.tsx",
+      "parent": "/app"
     }
   }
 }
