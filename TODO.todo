@@ -1,6 +1,0 @@
-☐ use recact query to store user data instad of zustand
-☐ useDoctitle test case
-☐ implement corrct accesstoken refresh token logic
-  ☐ store accesstoke in memory and refresh token in httponly cookie
-
-☐ use getEnvValue instead
