@@ -86,6 +86,8 @@ The folder structure is as follows:
 ├── src
 │   ├── __mocks__
 │   ├── app
+│   ├── api
+│   ├── assets
 │   ├── components
 │   │   ├── forms
 │   │   ├── hooks
@@ -93,7 +95,6 @@ The folder structure is as follows:
 │   │   ├── ui
 │   │   └── developmentTools.tsx
 │   ├── config
-│   ├── feature
 │   ├── mocker
 │   ├── modules
 │   │   └── i18n
@@ -122,7 +123,7 @@ The folder structure is as follows:
 
 ```
 
-2. There are README files which contain simple descriptions about how the different directories in the accompanying folder structure may be used. As an example check out the [recommended component organizational structure](src/components/README.md) as well as the [recommended folder structure](src/features/README.md).
+2. There are README files which contain simple descriptions about how the different directories in the accompanying folder structure may be used. As an example check out the [recommended component organizational structure](src/components/README.md).
 
 ## Testing
 
