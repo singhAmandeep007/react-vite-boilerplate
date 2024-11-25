@@ -1,6 +1,7 @@
 import { QueryClient } from "@tanstack/react-query";
 import { createRouter } from "@tanstack/react-router";
 import { routeTree } from "../routeTree.gen";
+import { isProduction } from "../utils";
 
 export const queryClient = new QueryClient();
 
@@ -15,6 +16,7 @@ export const router = createRouter({
   // since we're using React Query, we don't want loader calls to ever be stale
   // this will ensure that the loader is always called when the route is preloaded or visited
   defaultPreloadStaleTime: 0,
+  basepath: isProduction ? "/react-vite-boilerplate/" : "/",
 });
 
 // register things for typesafety

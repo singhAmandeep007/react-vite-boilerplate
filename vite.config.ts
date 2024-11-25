@@ -65,7 +65,7 @@ export default defineConfig(({ mode }) => {
       strictPort: true,
       open: true,
     },
-    base: "/react-vite-boilerplate/",
+    base: isProdMode ? "/react-vite-boilerplate/" : "/",
     envDir: "./env",
     plugins,
     build: {
