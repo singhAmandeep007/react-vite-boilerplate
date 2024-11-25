@@ -2,7 +2,7 @@
 
 ![](/public/react-vite-boilerplate.png)
 
-Everything you need to kick off your next Vite + React web app!
+Everything you need to start with your next Vite + React web app! Delighful developer experience with batteries included.
 
 ## Table of Contents
 
