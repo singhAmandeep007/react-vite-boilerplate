@@ -8,6 +8,8 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface Chainable {
       interceptMswRequest(...handlers: RequestHandler[]): void;
+
+      login(email: string, password: string): void;
     }
   }
 }

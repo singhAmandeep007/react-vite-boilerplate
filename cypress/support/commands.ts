@@ -36,4 +36,11 @@
 //   }
 // }
 
+Cypress.Commands.add("login", (email: string, password: string) => {
+  cy.visit("/auth/login");
+  cy.findByLabelText(/email/i).type(email);
+  cy.findByLabelText(/password/i).type(password);
+  cy.findAllByRole("button", { name: "Login" }).eq(1).click();
+});
+
 import "@testing-library/cypress/add-commands";

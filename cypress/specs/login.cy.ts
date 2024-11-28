@@ -1,3 +1,8 @@
+import { HttpResponse, http } from "msw";
+
+import { authService } from "../../src/api/auth";
+import { apiURL } from "../../src/utils";
+
 describe("Login", () => {
   beforeEach(() => {
     cy.visit("/");
@@ -5,16 +10,21 @@ describe("Login", () => {
     cy.url().should("include", "/");
   });
 
-  it("should login successfully", () => {
-    cy.findByRole("button", { name: "Login" }).click();
-
-    cy.url().should("include", "/auth/login");
-
-    cy.findByLabelText(/email/i).type("someemail@example.com");
-    cy.findByLabelText(/password/i).type("password");
-
-    cy.findAllByRole("button", { name: "Login" }).eq(1).click();
+  it("should login successfully and redirected to app", () => {
+    cy.login("someemail@gmail.com", "somepassword");
 
     cy.url().should("include", "/app");
+  });
+
+  it("should show error notification if login failed", () => {
+    cy.interceptMswRequest(
+      http.post(apiURL(authService.loginEndpoint).toString(), () => {
+        return HttpResponse.json({ message: "Login failed." }, { status: 401 });
+      })
+    );
+
+    cy.login("someemail@gmail.com", "somepassword");
+
+    cy.findByRole("status").should("have.text", "Login failed.");
   });
 });
