@@ -4,6 +4,9 @@
 
 Everything you need to start with your next Vite + React web app! Delighful developer experience with batteries included.
 
+## Demo
+[react-vite-boilerplate.webm](https://github.com/user-attachments/assets/d8b86387-9a81-4066-a39c-b72b2d6e40ae)
+
 ## Table of Contents
 
 - [Overview](#overview)
