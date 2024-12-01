@@ -7,6 +7,8 @@ Everything you need to start with your next Vite + React web app! Delighful deve
 ## Demo
 [react-vite-boilerplate.webm](https://github.com/user-attachments/assets/d8b86387-9a81-4066-a39c-b72b2d6e40ae)
 
+## [Technical Blog](https://dev.to/singhamandeep007/building-a-production-ready-react-vite-typescript-boilerplate-4ifh)
+
 ## Table of Contents
 
 - [Overview](#overview)
