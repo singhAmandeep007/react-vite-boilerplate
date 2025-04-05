@@ -5,7 +5,7 @@ import { handlers } from "./handlers";
 
 const worker = setupWorker(...handlers);
 
-const baseUrl = isProduction ? "https://singhamandeep.me/react-vite-boilerplate/" : "/";
+const baseUrl = isProduction ? "https://singhamandeep007.github.io/react-vite-boilerplate/" : "/";
 
 export const runServer = () => {
   return worker.start({
