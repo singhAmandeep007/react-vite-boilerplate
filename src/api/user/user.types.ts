@@ -10,11 +10,11 @@ export const USER_ROLES = {
   pro: "pro",
 } as const;
 
-export const userRoleSchema = z.nativeEnum(USER_ROLES);
+export const userRoleSchema = z.enum(USER_ROLES);
 
 export const userAppSettingsSchema = z.object({
-  theme: z.nativeEnum(THEME),
-  lng: z.nativeEnum(LANGS_VALUES_MAP),
+  theme: z.enum(THEME),
+  lng: z.enum(LANGS_VALUES_MAP),
 });
 
 export const userSchema = z.object({
@@ -22,13 +22,13 @@ export const userSchema = z.object({
   username: z.string().min(1),
   role: userRoleSchema,
 
-  email: z.string().email(),
+  email: z.email(),
   name: z.string().min(1),
 
   appSettings: userAppSettingsSchema,
 
-  createdAt: z.string().datetime(),
-  updatedAt: z.string().datetime(),
+  createdAt: z.iso.datetime(),
+  updatedAt: z.iso.datetime(),
 });
 
 export const userTokenSchema = z.object({
