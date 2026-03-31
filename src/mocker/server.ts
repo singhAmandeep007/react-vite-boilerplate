@@ -5,13 +5,18 @@ import { handlers } from "./handlers";
 
 const worker = setupWorker(...handlers);
 
-const baseUrl = isProduction ? "https://singhamandeep007.github.io/react-vite-boilerplate/" : "/";
+const appBasePath = isProduction ? import.meta.env.BASE_URL : "/";
+
+const serviceWorkerUrl = new URL(`.${appBasePath}mockServiceWorker.js`, window.location.origin).toString();
 
 export const runServer = () => {
   return worker.start({
     onUnhandledRequest: "bypass",
     serviceWorker: {
-      url: `${baseUrl}mockServiceWorker.js`,
+      url: serviceWorkerUrl,
+      options: {
+        scope: appBasePath,
+      },
     },
   });
 };

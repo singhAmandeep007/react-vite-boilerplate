@@ -9,6 +9,19 @@ import { DEFAULT_INIT_OPTION, TLangsValues, TNamespaces } from "./consts";
 export class I18n {
   protected i18n: i18next.i18n;
 
+  private registerCustomFormatters() {
+    const formatter = this.i18n.services?.formatter;
+    if (!formatter) return;
+
+    formatter.add("uppercase", (value) => {
+      return String(value ?? "").toUpperCase();
+    });
+
+    formatter.add("lowercase", (value) => {
+      return String(value ?? "").toLowerCase();
+    });
+  }
+
   constructor() {
     this.i18n = i18next.createInstance();
 
@@ -79,12 +92,15 @@ export class I18n {
               },
             }
           : {}),
+
         ...initOptions,
       },
       (error) => {
         if (error) {
           return console.error("Something went wrong loading internationalization", error);
         }
+
+        this.registerCustomFormatters();
       }
     );
   }

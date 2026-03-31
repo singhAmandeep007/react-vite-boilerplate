@@ -48,14 +48,6 @@ export const DEFAULT_INIT_OPTION: InitOptions = {
     // defaults
     prefix: "{{",
     suffix: "}}",
-
-    format: (value, format, _) => {
-      if (value instanceof String) {
-        if (format === "uppercase") return value.toUpperCase();
-        if (format === "lowercase") return value.toLowerCase();
-      }
-      return value as string;
-    },
   },
 
   react: {
