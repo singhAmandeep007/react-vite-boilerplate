@@ -21,7 +21,7 @@
     "boilerplate"
   ],
   "bin": {
-    "crvb": "./bin/create.js"
+    "crvb": "bin/create.js"
   },
   "files": [
     "bin",
