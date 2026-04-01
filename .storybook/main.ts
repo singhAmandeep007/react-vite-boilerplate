@@ -6,11 +6,10 @@ const config: StorybookConfig = {
   // addons are plugins that extend Storybook's core functionality.
   addons: [
     "@storybook/addon-links",
-    "@storybook/addon-essentials",
     "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
     "@storybook/addon-themes",
     "@storybook/addon-a11y",
+    "@storybook/addon-docs"
   ],
   framework: {
     name: "@storybook/react-vite",
@@ -21,9 +20,7 @@ const config: StorybookConfig = {
     },
   },
   docs: {
-    // enables auto-generated documentation for the component stories
-    autodocs: "tag",
-    defaultName: "Documentation",
+    defaultName: "Documentation"
   },
 };
 export default config;

@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => {
   const isDevMode = mode === "development";
   const isProdMode = mode === "production";
   const isTestMode = process.env.VITEST === "true";
+  const isAnalyzeMode = process.env.ANALYZE === "true";
 
   const shouldCheckESLintDev = isDevMode && JSON.parse(env.VITE_ESLINT_DEV_CHECK) ? true : false;
   const shouldCheckTypeScriptDev = isDevMode && JSON.parse(env.VITE_TSC_DEV_CHECK) ? true : false;
@@ -39,7 +40,7 @@ export default defineConfig(({ mode }) => {
       })
     );
   }
-  if (isProdMode) {
+  if (isAnalyzeMode) {
     plugins.push(
       visualizer({
         template: "treemap",
