@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUSKY: 0
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,6 +32,11 @@ jobs:
 
       - name: Disable git hooks in CI
         run: git config core.hooksPath /dev/null
+
+      - name: Verify npm auth
+        run: |
+          npm ping
+          npm whoami
 
       - name: Create Release PR or Publish
         uses: changesets/action@v1
