@@ -1,5 +1,5 @@
 import js from "@eslint/js";
-import cypress from "eslint-plugin-cypress/flat";
+import cypress from "eslint-plugin-cypress";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
