@@ -1,7 +1,6 @@
 /// <reference types="vitest" />
 
 import { defineConfig, loadEnv } from "vite";
-import { configDefaults } from "vitest/config";
 
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
@@ -58,6 +57,7 @@ export default defineConfig(({ mode }) => {
       strictPort: true,
       open: true,
       fs: {
+        allow: [".."],
         cachedChecks: false,
       },
     },
@@ -74,48 +74,6 @@ export default defineConfig(({ mode }) => {
       sourcemap: true,
       // READ-MORE:  https://vitejs.dev/config/build-options#build-target
       target: "esnext",
-    },
-    test: {
-      root: "./src",
-      env: loadEnv("test", process.cwd() + "/env"),
-      // use APIs globally like jest
-      // READ-MORE: https://vitest.dev/config/#globals
-      globals: false,
-      // https://vitest.dev/config/#environment
-      environment: "jsdom",
-      exclude: [...configDefaults.exclude, "**/cypress/**"],
-      setupFiles: ["./tests/setup.ts"],
-      testTimeout: 5000,
-      // READ-MORE: https://vitest.dev/config/#css
-      css: {
-        modules: {
-          // process CSS files and do not hash class names
-          // READ-MORE: https://vitest.dev/config/#css-modules-classnamestrategy
-          classNameStrategy: "non-scoped",
-        },
-        // READ-MORE: https://vitest.dev/config/#css-include
-        include: /\.(scss|sass|css)$/,
-      },
-      // write tests for your types
-      // NOTE: by default all tests inside `*.test-d.ts` files are considered type tests
-      // READ-MORE: https://vitest.dev/guide/testing-types.html
-      typecheck: {
-        enabled: true,
-      },
-      // teardown
-      // Calls mockClear (Clears all information about every call) before every test. This will clear mock history and reset its implementation to an empty function (will return undefined). Completely reset a mock to the default state.
-      // READ-MORE: https://vitest.dev/config/#mockreset
-      mockReset: true,
-
-      // extra
-      logHeapUsage: true,
-      // READ-MORE: https://vitest.dev/config/#coverage
-      coverage: {
-        provider: "v8",
-        reporter: ["html"],
-        reportsDirectory: "../reports/unit/coverage",
-        exclude: ["*services/mocker", "*tests", "*types", "*__mocks__", "*assets"],
-      },
     },
   };
 });
