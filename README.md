@@ -14,6 +14,7 @@ Everything you need to start with your next Vite + React web app! Delighful deve
 - [Overview](#overview)
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
+- [Scripts](#scripts)
 - [Important Note](#important-note)
 - [Testing](#testing)
 - [Deployment](#deployment)
@@ -28,7 +29,7 @@ A more detailed list of the included packages can be found in the [Installed Pac
 
 ## Requirements
 
-- [NodeJS 20+](https://nodejs.org/en)
+- [NodeJS 24.x](https://nodejs.org/en) (see [.nvmrc](.nvmrc))
 - [npm](https://www.npmjs.com)
 
 ## Getting Started
@@ -70,6 +71,53 @@ Congrats! You're ready to starting working on that new project!
 If you wish to remove any hooks, simply delete the corresponding file in the .husky directory.
 
 If you want to ignore husky hooks for a specific commit, you can use the `--no-verify` flag. Eg. `git commit -m "your message" --no-verify`
+
+## Scripts
+
+### App
+
+```sh
+npm run dev
+npm run build
+npm run preview
+npm run preview:local:msw
+```
+
+### Storybook
+
+```sh
+npm run storybook
+npm run storybook:build
+npm run test:storybook
+```
+
+### Tests
+
+```sh
+npm test
+npm run test:unit
+npm run test:unit:coverage
+npm run test:unit:watch
+npm run test:unit:ui
+npm run test:e2e
+npm run test:e2e:headless
+```
+
+### Code Quality
+
+```sh
+npm run lint
+npm run format
+npm run tsc:check
+npm run tsc:watch
+```
+
+### Setup
+
+```sh
+npm run init:msw
+npm run prepare
+```
 
 ## Important Note
 
@@ -130,6 +178,8 @@ The folder structure is as follows:
 
 2. There are README files which contain simple descriptions about how the different directories in the accompanying folder structure may be used. As an example check out the [recommended component organizational structure](src/components/README.md).
 
+Storybook-specific configuration and usage are documented in [.storybook/README.md](.storybook/README.md).
+
 ## Testing
 
 ### Unit Testing
@@ -152,6 +202,16 @@ npm run test:unit:ui
 ```
 
 Testing types is also supported with vitest and this application is set up to run tests for types using it. By default all tests inside `*.test-d.ts` files are considered type tests.
+
+### Storybook Testing
+
+Component stories can be tested with Vitest through Storybook.
+
+```sh
+npm run test:storybook
+```
+
+Accessibility checks are enabled for story tests and configured to fail on violations.
 
 ### End-to-End (E2E) Testing
 

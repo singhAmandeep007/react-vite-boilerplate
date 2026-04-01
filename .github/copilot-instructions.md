@@ -25,12 +25,14 @@ Keep this short and actionable. Reference key files for examples and patterns.
 - Start dev server: `npm run dev` (Vite).
 - Build: `npm run build` (runs `tsc -b` then `vite build`).
 - Unit tests: `npm test` or `npm run test:unit` (Vitest).
+- Storybook tests: `npm run test:storybook` (Vitest Storybook project).
 - E2E (Cypress): `npm run test:e2e` (launches `dev:test` then Cypress). Use `npm run test:e2e:headless` for CI.
 - Initialize MSW worker files (if updating handlers): `npm run init:msw`.
 
 ## Testing and debugging notes
 
 - Unit tests rely on `src/tests/*` helpers and a test server `src/tests/testServer.ts`; follow existing patterns for `render` and `renderHook` helpers.
+- Storybook tests run via `@storybook/addon-vitest`; accessibility checks are configured in `.storybook/preview.ts` and are expected to fail on violations.
 - E2E: Cypress config is at `cypress.config.js` and fixtures live under `cypress/fixtures`.
 - If debugging API calls, check `src/mocker/handlers.ts` and `src/mocker/server.ts` (local mocking) before assuming production API issues.
 
