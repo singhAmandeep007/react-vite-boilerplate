@@ -14,7 +14,10 @@ Everything you need to start with your next Vite + React web app! Delighful deve
 - [Overview](#overview)
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
+- [Scaffold via npx](#scaffold-via-npx)
 - [Scripts](#scripts)
+- [Open Source Setup](#open-source-setup)
+- [Publishing and Releases](#publishing-and-releases)
 - [Important Note](#important-note)
 - [Testing](#testing)
 - [Deployment](#deployment)
@@ -72,6 +75,22 @@ If you wish to remove any hooks, simply delete the corresponding file in the .hu
 
 If you want to ignore husky hooks for a specific commit, you can use the `--no-verify` flag. Eg. `git commit -m "your message" --no-verify`
 
+## Scaffold via npx
+
+This template can be scaffolded using the published CLI package:
+
+```sh
+npx crvb@latest my-app
+```
+
+Then run:
+
+```sh
+cd my-app
+npm install
+npm run dev
+```
+
 ## Scripts
 
 ### App
@@ -118,6 +137,43 @@ npm run tsc:watch
 npm run init:msw
 npm run prepare
 ```
+
+## Open Source Setup
+
+The repository includes standard open-source project files:
+
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+- [SECURITY.md](SECURITY.md)
+- [Issue templates](.github/ISSUE_TEMPLATE)
+- [Pull request template](.github/pull_request_template.md)
+
+## Publishing and Releases
+
+Releases are managed with Changesets and GitHub Actions.
+
+### One-time setup
+
+1. Create an npm account and login locally using `npm login`.
+2. In GitHub repository settings, add `NPM_TOKEN` as an Actions secret.
+3. Ensure your default branch is `main`.
+
+### Release flow
+
+1. Make changes in a feature branch.
+2. Add a changeset:
+
+```sh
+npm run changeset
+```
+
+3. Open and merge a pull request.
+4. GitHub Actions will open/update a Release PR.
+5. Merge the Release PR to publish to npm and create release notes.
+
+Release automation workflow:
+
+- [.github/workflows/release.yml](.github/workflows/release.yml)
 
 ## Important Note
 

@@ -1,0 +1,41 @@
+{
+  "name": "crvb",
+  "version": "0.1.0",
+  "description": "Scaffold a React + Vite boilerplate app",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/singhAmandeep007/react-vite-boilerplate.git",
+    "directory": "packages/create-react-vite-boilerplate"
+  },
+  "homepage": "https://github.com/singhAmandeep007/react-vite-boilerplate#readme",
+  "bugs": {
+    "url": "https://github.com/singhAmandeep007/react-vite-boilerplate/issues"
+  },
+  "keywords": [
+    "create",
+    "react",
+    "vite",
+    "scaffold",
+    "boilerplate"
+  ],
+  "bin": {
+    "crvb": "./bin/create.js"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "degit": "^2.8.4",
+    "kolorist": "^1.8.0",
+    "prompts": "^2.4.2"
+  }
+}

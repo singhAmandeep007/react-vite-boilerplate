@@ -6,11 +6,12 @@ Keep this short and actionable. Reference key files for examples and patterns.
 
 ## Big picture
 
-- App entry: [src/main.tsx](src/main.tsx) — sets up i18n, conditionally starts the local `mocker` in dev/production and then mounts `App`.
-- App composition: [src/app/App.tsx](src/app/App.tsx) — wraps `Router`, `AuthProvider`, React Query and UI providers.
-- Routing: [src/app/router.tsx](src/app/router.tsx) + [src/routeTree.gen.ts](src/routeTree.gen.ts) — uses TanStack Router and a generated route tree. Routes and types are defined via `routeTree.gen.ts`.
-- API layer: [src/api/apiService.ts](src/api/apiService.ts) — `ApiService` wraps `ky`, sets `prefixUrl` from `apiURL()` and uses i18n for error messages.
-- State: [src/store/store.ts](src/store/store.ts) — `zustand` with `persist` (sessionStorage), `devtools`, and custom `createSelectors` helpers. Store slices live under `src/store/*` (auth slice is `src/store/auth`).
+- App entry: [src/main.tsx](../src/main.tsx) — sets up i18n, conditionally starts the local `mocker` in dev/production and then mounts `App`.
+- CLI package: [packages/create-react-vite-boilerplate](../packages/create-react-vite-boilerplate) — published npm scaffolder used by `npx create-react-vite-boilerplate@latest`.
+- App composition: [src/app/App.tsx](../src/app/App.tsx) — wraps `Router`, `AuthProvider`, React Query and UI providers.
+- Routing: [src/app/router.tsx](../src/app/router.tsx) + [src/routeTree.gen.ts](../src/routeTree.gen.ts) — uses TanStack Router and a generated route tree. Routes and types are defined via `routeTree.gen.ts`.
+- API layer: [src/api/apiService.ts](../src/api/apiService.ts) — `ApiService` wraps `ky`, sets `prefixUrl` from `apiURL()` and uses i18n for error messages.
+- State: [src/store/store.ts](../src/store/store.ts) — `zustand` with `persist` (sessionStorage), `devtools`, and custom `createSelectors` helpers. Store slices live under `src/store/*` (auth slice is `src/store/auth`).
 
 ## Key patterns and conventions
 
@@ -28,6 +29,9 @@ Keep this short and actionable. Reference key files for examples and patterns.
 - Storybook tests: `npm run test:storybook` (Vitest Storybook project).
 - E2E (Cypress): `npm run test:e2e` (launches `dev:test` then Cypress). Use `npm run test:e2e:headless` for CI.
 - Initialize MSW worker files (if updating handlers): `npm run init:msw`.
+- Create a release changeset: `npm run changeset`.
+- Version packages from pending changesets: `npm run version:packages`.
+- Publish from changesets: `npm run release`.
 
 ## Testing and debugging notes
 
@@ -35,6 +39,7 @@ Keep this short and actionable. Reference key files for examples and patterns.
 - Storybook tests run via `@storybook/addon-vitest`; accessibility checks are configured in `.storybook/preview.ts` and are expected to fail on violations.
 - E2E: Cypress config is at `cypress.config.js` and fixtures live under `cypress/fixtures`.
 - If debugging API calls, check `src/mocker/handlers.ts` and `src/mocker/server.ts` (local mocking) before assuming production API issues.
+- Release automation is configured in `.github/workflows/release.yml` and uses `NPM_TOKEN`.
 
 ## Where to make changes (examples)
 
@@ -46,7 +51,7 @@ Keep this short and actionable. Reference key files for examples and patterns.
 
 - Prefer editing small focused files; preserve exports and index barrel files.
 - When adding routes, update `src/routes/*` and run the route generation step if any (inspect repo scripts or README for generation step). If unsure, search for `routeTree.gen` usages.
-- Refer to these canonical files for examples: [src/main.tsx](src/main.tsx), [src/app/App.tsx](src/app/App.tsx), [src/api/apiService.ts](src/api/apiService.ts), [src/store/store.ts](src/store/store.ts), [src/mocker/handlers.ts](src/mocker/handlers.ts).
+- Refer to these canonical files for examples: [src/main.tsx](../src/main.tsx), [src/app/App.tsx](../src/app/App.tsx), [src/api/apiService.ts](../src/api/apiService.ts), [src/store/store.ts](../src/store/store.ts), [src/mocker/handlers.ts](../src/mocker/handlers.ts).
 
 ## If unsure
 
