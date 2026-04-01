@@ -18,6 +18,7 @@ export const Route = createRootRouteWithContext<TRouterContext>()({
   errorComponent: () => <div>Error</div>,
 });
 
+// eslint-disable-next-line react-refresh/only-export-components
 function RootComponent() {
   useDocTitle();
 

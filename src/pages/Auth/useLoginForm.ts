@@ -26,8 +26,8 @@ export const useLoginForm = ({ defaultValues }: TUseLoginFormProps = {}) => {
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
-      form
-        .handleSubmit(async (payload) => {
+      void form.handleSubmit(
+        async (payload) => {
           const { data, error } = await authService.login(payload);
 
           if (data) {
@@ -44,14 +44,17 @@ export const useLoginForm = ({ defaultValues }: TUseLoginFormProps = {}) => {
           }
 
           if (error) {
-            const errorResponse = await error.response.json();
+            const errorResponse = error.response ? await error.response.json() : undefined;
             toast({
               variant: "destructive",
               title: errorResponse?.message ?? error?.message,
             });
           }
-        })(e)
-        .catch(console.error);
+        },
+        () => {
+          // Invalid form values are already reflected in formState errors.
+        }
+      )(e);
     },
     [form, toast, updateAuthStore, router, navigate]
   );
