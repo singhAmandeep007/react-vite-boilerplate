@@ -18,6 +18,10 @@ Everything you need to start with your next Vite + React web app! Delighful deve
 - [Scripts](#scripts)
 - [Open Source Setup](#open-source-setup)
 - [Publishing and Releases](#publishing-and-releases)
+- [Release System Diagram](#release-system-diagram)
+- [Versioning Guide](#versioning-guide)
+- [Owner Release Checklist](#owner-release-checklist)
+- [Complete Owner Example](#complete-owner-example)
 - [Important Note](#important-note)
 - [Testing](#testing)
 - [Deployment](#deployment)
@@ -150,30 +154,163 @@ The repository includes standard open-source project files:
 
 ## Publishing and Releases
 
-Releases are managed with Changesets and GitHub Actions.
+This repository uses a two-phase release model powered by Changesets:
+
+1. Changes PR phase: feature work + `.changeset/*.md` entries.
+2. Release PR phase: automated version/changelog generation + npm publish.
+
+Primary components:
+
+1. `.changeset/config.json` - versioning/changelog strategy.
+2. `.github/workflows/release.yml` - orchestration on `push` to `main`.
+3. `packages/create-react-vite-boilerplate/package.json` - publish target (`name: crvb`, `bin`, `files`, `publishConfig`).
 
 ### One-time setup
 
 1. Create an npm account and login locally using `npm login`.
 2. In GitHub repository settings, add `NPM_TOKEN` as an Actions secret.
 3. Ensure your default branch is `main`.
+4. Ensure `GITHUB_TOKEN` has workflow default permissions for PR/content updates.
 
 ### Release flow
 
 1. Make changes in a feature branch.
-2. Add a changeset:
+2. Add a changeset (this creates release metadata, not a publish):
 
 ```sh
 npm run changeset
 ```
 
-3. Open and merge a pull request.
-4. GitHub Actions will open/update a Release PR.
-5. Merge the Release PR to publish to npm and create release notes.
+3. Merge the feature PR to `main`.
+4. Release workflow executes and `changesets/action` creates or updates a Release PR.
+5. Merge the Release PR.
+6. Publish step runs (`npm run release` -> `changeset publish`) and pushes package `crvb` to npm.
+7. Changelog and GitHub release metadata are generated from changeset entries.
 
 Release automation workflow:
 
 - [.github/workflows/release.yml](.github/workflows/release.yml)
+
+## Release System Diagram
+
+The diagram below models control flow, artifacts, and runtime boundaries.
+
+```mermaid
+flowchart LR
+  subgraph DEV[Owner Local Environment]
+    A1[Code changes]
+    A2[npm run lint\nnpm run tsc:check\nnpm run test:unit\nnpm run test:storybook]
+    A3[npm run changeset\ncreates .changeset/*.md]
+    A4[Push PR branch]
+  end
+
+  subgraph GH[GitHub]
+    B1[Feature PR merged to main]
+    B2[release.yml triggered on push main]
+    B3[changesets/action\nversion command]
+    B4[Release PR created/updated\ncontains version bumps + changelog]
+    B5[Release PR merged]
+    B6[changesets/action\npublish command]
+  end
+
+  subgraph REG[NPM Registry]
+    C1[Package crvb published]
+    C2[npx crvb@latest resolves to new version]
+  end
+
+  subgraph ART[Key Artifacts]
+    D1[.changeset/config.json]
+    D2[.changeset/*.md]
+    D3[packages/create-react-vite-boilerplate/package.json]
+    D4[CHANGELOG.md / release notes]
+  end
+
+  A1 --> A2 --> A3 --> A4 --> B1 --> B2 --> B3 --> B4 --> B5 --> B6 --> C1 --> C2
+  D1 --> B3
+  D2 --> B3
+  D3 --> B6
+  B3 --> D4
+  B6 --> D4
+```
+
+## Versioning Guide
+
+For package `crvb`, use semantic versioning:
+
+1. `patch` (`x.y.Z`): internal fixes, no CLI/API contract change.
+2. `minor` (`x.Y.z`): additive functionality, backward compatible CLI behavior.
+3. `major` (`X.y.z`): breaking contract change requiring migration.
+
+Mark as `major` when any of these happen:
+
+1. Command rename or removal.
+2. Option/flag rename/removal.
+3. Scaffold output structure changes that break existing automation/docs.
+4. Minimum Node.js requirement increases incompatibly.
+
+## Owner Release Checklist
+
+Follow this exact sequence for each release:
+
+1. Implement your changes.
+2. Run local quality checks:
+
+```sh
+npm run lint
+npm run tsc:check
+npm run test:unit
+npm run test:storybook
+```
+
+3. Create a changeset:
+
+```sh
+npm run changeset
+```
+
+4. Select package `crvb` and choose patch/minor/major.
+5. Write a summary with explicit impact/migration notes.
+6. Commit and push your branch.
+7. Open and merge a PR to `main`.
+8. Wait for GitHub Action to create/update Release PR.
+9. Review Release PR diff carefully:
+  - package version bump
+  - changelog text
+  - any generated lockfile changes
+10. Merge Release PR to publish on npm.
+11. Verify package:
+
+```sh
+npm view crvb version
+```
+
+12. Verify scaffold command:
+
+```sh
+npx crvb@latest my-app
+```
+
+## Complete Owner Example
+
+Example: ship `1.0.0` for package `crvb`.
+
+1. You completed feature work in a branch.
+2. You ran validation:
+  - lint
+  - typecheck
+  - unit tests
+  - storybook tests
+3. You created a changeset and selected `major`.
+4. Changeset summary captured:
+  - breaking command behavior notes
+  - migration command example
+5. You merged feature PR to `main`.
+6. Release workflow created Release PR with generated version and changelog updates.
+7. You reviewed and merged Release PR.
+8. Publish executed in CI using `NPM_TOKEN`.
+9. Verification:
+  - `npm view crvb version` returns `1.0.0`
+  - `npx crvb@latest demo-app` scaffolds successfully
 
 ## Important Note
 
