@@ -33,6 +33,15 @@ jobs:
       - name: Disable git hooks in CI
         run: git config core.hooksPath /dev/null
 
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run tsc:check
+
+      - name: Unit tests
+        run: npm run test:unit
+
       - name: Verify npm auth
         run: |
           npm ping
