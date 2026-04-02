@@ -1,6 +1,6 @@
 {
   "name": "crvb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scaffold a React + Vite boilerplate app",
   "type": "module",
   "license": "MIT",
