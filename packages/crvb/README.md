@@ -1,11 +1,11 @@
-# crvb
+# @singhamandeep/crvb
 
 Scaffold the React Vite Boilerplate with one command.
 
 ## Usage
 
 ```sh
-npx crvb@latest my-app
+npx @singhamandeep/crvb@latest my-app
 ```
 
 ## What it does

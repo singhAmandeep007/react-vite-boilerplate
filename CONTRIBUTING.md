@@ -23,7 +23,7 @@ When your change affects the published CLI package, add a changeset:
 npm run changeset
 ```
 
-Choose the `crvb` package and select patch/minor/major.
+Choose the `@singhamandeep/crvb` package and select patch/minor/major.
 
 ## Pull Request Expectations
 
