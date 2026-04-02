@@ -1,5 +1,5 @@
 {
-  "name": "crvb",
+  "name": "@singhamandeep/crvb",
   "version": "1.0.1",
   "description": "Scaffold a React + Vite boilerplate app",
   "type": "module",

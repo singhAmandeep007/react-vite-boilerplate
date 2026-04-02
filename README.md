@@ -84,7 +84,7 @@ If you want to ignore husky hooks for a specific commit, you can use the `--no-v
 This template can be scaffolded using the published CLI package:
 
 ```sh
-npx crvb@latest my-app
+npx @singhamandeep/crvb@latest my-app
 ```
 
 Then run:
@@ -163,7 +163,7 @@ Primary components:
 
 1. `.changeset/config.json` - versioning/changelog strategy.
 2. `.github/workflows/release.yml` - orchestration on `push` to `main`.
-3. `packages/crvb/package.json` - publish target (`name: crvb`, `bin`, `files`, `publishConfig`).
+3. `packages/crvb/package.json` - publish target (`name: @singhamandeep/crvb`, `bin`, `files`, `publishConfig`).
 
 ### One-time setup
 
@@ -184,7 +184,7 @@ npm run changeset
 3. Merge the feature PR to `main`.
 4. Release workflow executes and `changesets/action` creates or updates a Release PR.
 5. Merge the Release PR.
-6. Publish step runs (`npm run release` -> `changeset publish`) and pushes package `crvb` to npm.
+6. Publish step runs (`npm run release` -> `changeset publish`) and pushes package `@singhamandeep/crvb` to npm.
 7. Changelog and GitHub release metadata are generated from changeset entries.
 
 Release automation workflow:
@@ -214,8 +214,8 @@ flowchart LR
   end
 
   subgraph REG[NPM Registry]
-    C1[Package crvb published]
-    C2[npx crvb@latest resolves to new version]
+    C1["Package @singhamandeep/crvb published"]
+    C2["npx @singhamandeep/crvb@latest resolves to new version"]
   end
 
   subgraph ART[Key Artifacts]
@@ -235,7 +235,7 @@ flowchart LR
 
 ## Versioning Guide
 
-For package `crvb`, use semantic versioning:
+For package `@singhamandeep/crvb`, use semantic versioning:
 
 1. `patch` (`x.y.Z`): internal fixes, no CLI/API contract change.
 2. `minor` (`x.Y.z`): additive functionality, backward compatible CLI behavior.
@@ -268,7 +268,7 @@ npm run test:storybook
 npm run changeset
 ```
 
-4. Select package `crvb` and choose patch/minor/major.
+4. Select package `@singhamandeep/crvb` and choose patch/minor/major.
 5. Write a summary with explicit impact/migration notes.
 6. Commit and push your branch.
 7. Open and merge a PR to `main`.
@@ -281,18 +281,18 @@ npm run changeset
 11. Verify package:
 
 ```sh
-npm view crvb version
+npm view @singhamandeep/crvb version
 ```
 
 12. Verify scaffold command:
 
 ```sh
-npx crvb@latest my-app
+npx @singhamandeep/crvb@latest my-app
 ```
 
 ## Complete Owner Example
 
-Example: ship `1.0.0` for package `crvb`.
+Example: ship `1.0.0` for package `@singhamandeep/crvb`.
 
 1. You completed feature work in a branch.
 2. You ran validation:
@@ -309,8 +309,8 @@ Example: ship `1.0.0` for package `crvb`.
 7. You reviewed and merged Release PR.
 8. Publish executed in CI using `NPM_TOKEN`.
 9. Verification:
-  - `npm view crvb version` returns `1.0.0`
-  - `npx crvb@latest demo-app` scaffolds successfully
+  - `npm view @singhamandeep/crvb version` returns `1.0.0`
+  - `npx @singhamandeep/crvb@latest demo-app` scaffolds successfully
 
 ## Important Note
 
