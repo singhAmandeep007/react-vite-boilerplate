@@ -53,8 +53,8 @@ async function main() {
   const rawArg = process.argv[2];
 
   if (rawArg === "--help" || rawArg === "-h") {
-    console.log("Usage: npx create-react-vite-boilerplate@latest <project-name>");
-    console.log("Example: npx create-react-vite-boilerplate@latest my-app");
+    console.log("Usage: npx crvb@latest <project-name>");
+    console.log("Example: npx crvb@latest my-app");
     process.exit(0);
   }
 
