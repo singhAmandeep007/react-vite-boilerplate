@@ -163,7 +163,7 @@ Primary components:
 
 1. `.changeset/config.json` - versioning/changelog strategy.
 2. `.github/workflows/release.yml` - orchestration on `push` to `main`.
-3. `packages/create-react-vite-boilerplate/package.json` - publish target (`name: crvb`, `bin`, `files`, `publishConfig`).
+3. `packages/crvb/package.json` - publish target (`name: crvb`, `bin`, `files`, `publishConfig`).
 
 ### One-time setup
 
@@ -221,7 +221,7 @@ flowchart LR
   subgraph ART[Key Artifacts]
     D1[.changeset/config.json]
     D2[.changeset/*.md]
-    D3[packages/create-react-vite-boilerplate/package.json]
+    D3[packages/crvb/package.json]
     D4[CHANGELOG.md / release notes]
   end
 

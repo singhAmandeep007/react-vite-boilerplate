@@ -1,5 +1,5 @@
 {
-  "name": "@singhamandeep/crvb",
+  "name": "crvb",
   "version": "1.0.0",
   "description": "Scaffold a React + Vite boilerplate app",
   "type": "module",
@@ -7,7 +7,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/singhAmandeep007/react-vite-boilerplate.git",
-    "directory": "packages/create-react-vite-boilerplate"
+    "directory": "packages/crvb"
   },
   "homepage": "https://github.com/singhAmandeep007/react-vite-boilerplate#readme",
   "bugs": {
