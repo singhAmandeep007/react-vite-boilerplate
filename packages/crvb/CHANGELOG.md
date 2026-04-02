@@ -1,5 +1,11 @@
 # crvb
 
+## 1.0.1
+
+### Patch Changes
+
+- [#2](https://github.com/singhAmandeep007/react-vite-boilerplate/pull/2) [`2c35d24`](https://github.com/singhAmandeep007/react-vite-boilerplate/commit/2c35d24faf520e16e9b4fa1da8f40e1987d53660) Thanks [@singhAmandeep007](https://github.com/singhAmandeep007)! - Rename package from `@singhamandeep/crvb` to unscoped `crvb`. Users can now scaffold directly with `npx crvb@latest my-app`.
+
 ## 1.0.0
 
 ### Major Changes
