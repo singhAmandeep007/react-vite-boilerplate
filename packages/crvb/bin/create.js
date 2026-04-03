@@ -147,6 +147,7 @@ async function main() {
     console.log(`${blue("Next steps:")}`);
     console.log(`  ${cyan(`cd ${target}`)}`);
     console.log(`  ${cyan("npm run dev")}`);
+    process.exit(0);
   } catch (error) {
     console.error(red("\nFailed to scaffold project."));
     console.error(error instanceof Error ? error.message : error);
