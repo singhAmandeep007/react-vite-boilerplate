@@ -452,7 +452,7 @@ npm run test:e2e:headless
 
 Github Actions has been set up to run tests on every push to the repository. The configuration can be found in the `.github/workflows` directory.
 
-Workflow for cypress tests is located in `.github/workflows/cypress.yml`.
+Workflow for cypress tests is located in `.github/workflows/cypress.yml`. This workflow integrates `cypress-mochawesome-reporter` to automatically generate standalone HTML reports of your test runs, complete with embedded screenshots and videos, and attaches them as Artifacts to the GitHub Actions run for you to download publicly.
 
 ## Devtools
 

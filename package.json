@@ -118,6 +118,7 @@
     "browserslist-to-esbuild": "^2.1.1",
     "commitizen": "^4.3.1",
     "cypress": "^15.13.0",
+    "cypress-mochawesome-reporter": "^4.0.2",
     "cypress-vite": "^1.8.0",
     "cz-conventional-changelog": "^3.3.0",
     "devmoji": "^2.3.0",
