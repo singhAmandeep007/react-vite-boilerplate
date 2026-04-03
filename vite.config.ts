@@ -1,8 +1,9 @@
 /// <reference types="vitest" />
 
+import browserslistToEsbuild from "browserslist-to-esbuild";
 import { defineConfig, loadEnv } from "vite";
 
-import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
 import { visualizer } from "rollup-plugin-visualizer";
 import checker from "vite-plugin-checker";
@@ -21,7 +22,16 @@ export default defineConfig(({ mode }) => {
   const shouldCheckESLintDev = isDevMode && JSON.parse(env.VITE_ESLINT_DEV_CHECK) ? true : false;
   const shouldCheckTypeScriptDev = isDevMode && JSON.parse(env.VITE_TSC_DEV_CHECK) ? true : false;
 
-  const plugins = [svgr(), !isTestMode && TanStackRouterVite(), react(), inspect()];
+  const plugins = [
+    svgr(),
+    !isTestMode &&
+      tanstackRouter({
+        target: "react",
+        autoCodeSplitting: true,
+      }),
+    react(),
+    inspect(),
+  ];
   if (!isTestMode) {
     // READ-MORE: https://github.com/fi3ework/vite-plugin-checker
     plugins.push(
@@ -73,7 +83,7 @@ export default defineConfig(({ mode }) => {
       outDir: "dist",
       sourcemap: true,
       // READ-MORE:  https://vitejs.dev/config/build-options#build-target
-      target: "esnext",
+      target: browserslistToEsbuild(),
     },
   };
 });
