@@ -3,6 +3,12 @@ import type { Preview } from "@storybook/react-vite";
 import "../src/index.css";
 
 import { withThemeByClassName } from "@storybook/addon-themes";
+import { initialize, mswLoader } from "msw-storybook-addon";
+
+// Initialize MSW
+initialize({
+  onUnhandledRequest: "bypass",
+});
 
 const preview: Preview = {
   parameters: {
@@ -20,6 +26,8 @@ const preview: Preview = {
       test: "error",
     },
   },
+
+  loaders: [mswLoader],
 
   decorators: [
     // toggle themes by class name
