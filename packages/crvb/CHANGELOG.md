@@ -1,5 +1,11 @@
 # @singhamandeep/crvb
 
+## 1.1.1
+
+### Patch Changes
+
+- [#9](https://github.com/singhAmandeep007/react-vite-boilerplate/pull/9) [`7e4ddc2`](https://github.com/singhAmandeep007/react-vite-boilerplate/commit/7e4ddc249334eb6ff9d8a19c62b7451bae20e3fe) Thanks [@singhAmandeep007](https://github.com/singhAmandeep007)! - Configure Cypress HTML reporting
+
 ## 1.1.0
 
 ### Minor Changes
