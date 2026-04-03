@@ -50,22 +50,15 @@ jobs:
       - name: Run Cypress e2e tests
         run: npm run test:e2e:headless
 
-      - name: Upload Cypress screenshots
+      - name: Upload Cypress E2E Report
         uses: actions/upload-artifact@v4
-        # there might be no screenshots created when:
-        # - there are no test failures
-        # so only upload screenshots if previous step has failed
-        if: failure()
+        # Always upload the report, regardless of test pass/fail
+        if: always()
         with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-          retention-days: 5
-
-      - name: Upload Cypress videos
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: cypress-videos
-          path: cypress/videos
-          retention-days: 5
+          name: cypress-report
+          path: |
+            cypress/reports
+            cypress/screenshots
+            cypress/videos
+          retention-days: 7
           if-no-files-found: ignore
