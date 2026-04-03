@@ -78,6 +78,7 @@ export default defineConfig(() => {
           ],
           test: {
             name: "storybook",
+            env,
             browser: {
               enabled: true,
               provider: playwright(),
