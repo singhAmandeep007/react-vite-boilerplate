@@ -1,5 +1,11 @@
 # @singhamandeep/crvb
 
+## 1.1.2
+
+### Patch Changes
+
+- [#11](https://github.com/singhAmandeep007/react-vite-boilerplate/pull/11) [`c837d1d`](https://github.com/singhAmandeep007/react-vite-boilerplate/commit/c837d1d3878205bc38d67b6404967de670fb5d98) Thanks [@singhAmandeep007](https://github.com/singhAmandeep007)! - remove cypress report from vcs
+
 ## 1.1.1
 
 ### Patch Changes
