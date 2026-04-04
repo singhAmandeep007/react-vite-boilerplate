@@ -31,6 +31,7 @@ dist-ssr
 /cypress/screenshots
 /cypress/videos
 /cypress/downloads
+/cypress/reports
 
 # temp
 *vitest-temp*
